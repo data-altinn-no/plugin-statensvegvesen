@@ -3,7 +3,7 @@ using Nadobe.Common.Interfaces;
 using Nadobe.Common.Models;
 using Nadobe.Common.Models.Enums;
 
-namespace Altinn.Dan.Plugin.DATASOURCENAME
+namespace Altinn.Dan.Plugin.Statensvegvesen
 {
     public class Metadata : IEvidenceSourceMetadata
     {

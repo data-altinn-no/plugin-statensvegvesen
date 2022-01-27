@@ -1,7 +1,7 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Altinn.Dan.Plugin.DATASOURCENAME.Config
+namespace Altinn.Dan.Plugin.Statensvegvesen.Config
 {
     public class ApplicationSettings
     {

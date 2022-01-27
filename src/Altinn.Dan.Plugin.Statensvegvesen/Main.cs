@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Altinn.Dan.Plugin.DATASOURCENAME.Config;
+using Altinn.Dan.Plugin.Statensvegvesen.Config;
 using Azure.Core.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
@@ -16,7 +16,7 @@ using Nadobe.Common.Models;
 using Nadobe.Common.Util;
 using Newtonsoft.Json;
 
-namespace Altinn.Dan.Plugin.DATASOURCENAME
+namespace Altinn.Dan.Plugin.Statensvegvesen
 {
     public class Main
     {
