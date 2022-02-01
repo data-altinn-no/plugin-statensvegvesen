@@ -21,6 +21,10 @@
     <PackageReference Include="Polly.Caching.Serialization.Json" Version="3.0.0" />
     <PackageReference Include="Polly.Extensions.Http" Version="3.0.0" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.88" />
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="13.15.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
@@ -30,5 +34,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <OpenApiReference Include="OpenAPIs\Svv.json" CodeGenerator="NSwagCSharp" Namespace="Altinn.Dan.Plugin.Statensvegvesen.Clients" ClassName="Svv">
+      <SourceUri>https://vegvesen.github.io/ak-api/filer/api/api_kjoretoysok_46.json</SourceUri>
+      <Options>/UseBaseUrl:false</Options>
+    </OpenApiReference>
   </ItemGroup>
 </Project>

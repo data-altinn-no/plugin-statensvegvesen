@@ -1,0 +1,3094 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Søk",
+        "description": "REST-API for søk",
+        "version": "2.0"
+    },
+    "servers": [
+        {
+            "url": "http://sisaudi.miljo.autodev.no/ws/no/vegvesen/kjoretoy/felles/v2",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/rest/distribusjon/kjoretoy/v2.0/sok/kjennemerke": {
+            "get": {
+                "tags": [
+                    "kjoretoysok"
+                ],
+                "description": "Tilbyr søk på kjøretøyets kjennemerke og henter informasjon om de kjøretøy som matcher søket",
+                "operationId": "sokKjoretoyForKjennemerke",
+                "parameters": [
+                    {
+                        "name": "kjennemerke",
+                        "in": "query",
+                        "description": "Kjoretoyets kjennemerke kan inneholde inntil 3 ukjente tegn. Ukjent tegn angis med ? og må url-enresponscodes",
+                        "required": true,
+                        "example": "AF3676?"
+                    },
+                    {
+                        "name": "ekskluderVraketUtfort",
+                        "in": "query",
+                        "description": "Benyttes for å ekskludere kjøretøy med registreringsstatus 'vraket' eller 'utført'"
+                    },
+                    {
+                        "name": "fra",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir første rad man ønsker returnert",
+                        "example": 11
+                    },
+                    {
+                        "name": "antall",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir antall rader man ønsker returnert",
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Søk gjennomført, responsen inneholder eventuelle treff og/eller responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Ingen kjøretøy funnet",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parameterfeil, responsen inneholder kun beskrivelse av feil som responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rest/distribusjon/kjoretoy/v2.0/sok/understellsnummer": {
+            "get": {
+                "tags": [
+                    "kjoretoysok"
+                ],
+                "description": "Tilbyr søk på kjøretøyets understellsnummer og henter informasjon om de kjøretøy som matcher søket",
+                "operationId": "sokKjoretoyForUnderstellsnummer",
+                "parameters": [
+                    {
+                        "name": "understellsnummer",
+                        "in": "query",
+                        "description": "Kjøretøyets understellsnummer (Søket støtter eksakt søk, prefiks og/eller postfix wildcards)",
+                        "required": true,
+                        "example": "1234234ERGWW01A*"
+                    },
+                    {
+                        "name": "ekskluderVraketUtfort",
+                        "in": "query",
+                        "description": "Benyttes for å ekskludere kjøretøy med registreringsstatus 'vraket' eller 'utført'"
+                    },
+                    {
+                        "name": "merkekode",
+                        "in": "query",
+                        "description": "Kan benyttes for filtrering slik at kun kjøretøy fra en bestemt merkekode returneres",
+                        "example": 1234
+                    },
+                    {
+                        "name": "fra",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir første rad man ønsker returnert",
+                        "example": 11
+                    },
+                    {
+                        "name": "antall",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir antall rader man ønsker returnert",
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Søk gjennomført, responsen inneholder eventuelle treff og/eller responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Ingen kjøretøy funnet",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parameterfeil, responsen inneholder kun beskrivelse av feil som responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rest/distribusjon/kjoretoy/v2.0/sok/fodselsnummer": {
+            "get": {
+                "tags": [
+                    "kjoretoysok"
+                ],
+                "description": "Tilbyr søk på eiers fodselsnummer og henter informasjon om  kjøretøy som har eier, medeier eller leasingtaker som matcher søket",
+                "operationId": "sokKjoretoyForFodselsnummer",
+                "parameters": [
+                    {
+                        "name": "fodselsnummer",
+                        "in": "query",
+                        "description": "Fødselsnummer på eier, medeier eller leasingtaker",
+                        "required": true,
+                        "example": "01017000000"
+                    },
+                    {
+                        "name": "ekskluderVraketUtfort",
+                        "in": "query",
+                        "description": "Benyttes for å ekskludere kjøretøy med registreringsstatus 'vraket' eller 'utført'"
+                    },
+                    {
+                        "name": "fra",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir første rad man ønsker returnert",
+                        "example": 11
+                    },
+                    {
+                        "name": "antall",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir antall rader man ønsker returnert",
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Søk gjennomført, responsen inneholder eventuelle treff og/eller responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Ingen kjøretøy funnet",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parameterfeil, responsen inneholder kun beskrivelse av feil som responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rest/distribusjon/kjoretoy/v2.0/sok/organisasjonsnummer": {
+            "get": {
+                "tags": [
+                    "kjoretoysok"
+                ],
+                "description": "Tilbyr søk på eiers organisasjonsnummer og henter informasjon om  kjøretøy som har eier, medeier eller leasingtaker som matcher søket",
+                "operationId": "sokKjoretoyForOrganisasjonsnummer",
+                "parameters": [
+                    {
+                        "name": "organisasjonsnummer",
+                        "in": "query",
+                        "description": "Organisasjonsnummer på eier, medeier eller leasingtaker",
+                        "required": true,
+                        "example": 900000000
+                    },
+                    {
+                        "name": "ekskluderVraketUtfort",
+                        "in": "query",
+                        "description": "Benyttes for å ekskludere kjøretøy med registreringsstatus 'vraket' eller 'utført'"
+                    },
+                    {
+                        "name": "fra",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir første rad man ønsker returnert",
+                        "example": 11
+                    },
+                    {
+                        "name": "antall",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir antall rader man ønsker returnert",
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Søk gjennomført, responsen inneholder eventuelle treff og/eller responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Ingen kjøretøy funnet",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parameterfeil, responsen inneholder kun beskrivelse av feil som responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rest/distribusjon/kjoretoy/v2.0/sok/kundeid": {
+            "get": {
+                "tags": [
+                    "kjoretoysok"
+                ],
+                "description": "Tilbyr søk på eiers kundeid og henter informasjon om kjøretøy som har eier, medeier eller leasingtaker som matcher søket",
+                "operationId": "sokKjoretoyForKundeid",
+                "parameters": [
+                    {
+                        "name": "kundeid",
+                        "in": "query",
+                        "description": "Kundeid på eier, medeier eller leasingtaker",
+                        "required": true,
+                        "example": 12345
+                    },
+                    {
+                        "name": "ekskluderVraketUtfort",
+                        "in": "query",
+                        "description": "Benyttes for å ekskludere kjøretøy med registreringsstatus 'vraket' eller 'utført'"
+                    },
+                    {
+                        "name": "fra",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir første rad man ønsker returnert",
+                        "example": 11
+                    },
+                    {
+                        "name": "antall",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir antall rader man ønsker returnert",
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Søk gjennomført, responsen inneholder eventuelle treff og/eller responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Ingen kjøretøy funnet",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parameterfeil, responsen inneholder kun beskrivelse av feil som responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rest/distribusjon/kjoretoy/v2.0/sok/eiernavn": {
+            "get": {
+                "tags": [
+                    "kjoretoysok"
+                ],
+                "description": "Tilbyr søk på eiers navn og henter informasjon om  kjøretøy som har eier, medeier eller leasingtaker som matcher søket",
+                "operationId": "sokKjoretoyForEiernavn",
+                "parameters": [
+                    {
+                        "name": "navn",
+                        "in": "query",
+                        "description": "Navn på eier, medeier eller leasingtaker",
+                        "required": true,
+                        "example": "Hans Hansen"
+                    },
+                    {
+                        "name": "postnummer",
+                        "in": "query",
+                        "description": "Hvis valgt vil søket filtrere resultat basert på treff som matcher postnummer",
+                        "example": "0640"
+                    },
+                    {
+                        "name": "poststed",
+                        "in": "query",
+                        "description": "Hvis valgt vil søket filtrere resultat basert på treff som matcher poststed",
+                        "example": "Hamar"
+                    },
+                    {
+                        "name": "fylke",
+                        "in": "query",
+                        "description": "Hvis valgt vil søket filtrere resultat basert på treff som matcher fylke. Se dokumentasjon for fylke kodeverk",
+                        "example": "Oslo"
+                    },
+                    {
+                        "name": "fodselsdato",
+                        "in": "query",
+                        "description": "Hvis valgt vil søket filtrere resultat basert på treff som matcher fødselsdato",
+                        "example": "2001-12-24"
+                    },
+                    {
+                        "name": "erPerson",
+                        "in": "query",
+                        "description": "Hvis angitt vil det kun søkes i personer (for 'true') eller kun organisasjoner (for 'false')",
+                        "example": true
+                    },
+                    {
+                        "name": "fra",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir første rad man ønsker returnert",
+                        "example": 11
+                    },
+                    {
+                        "name": "antall",
+                        "in": "query",
+                        "description": "Benyttes for paging av resultatet - angir antall rader man ønsker returnert",
+                        "example": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Søk gjennomført, responsen inneholder eventuelle treff og/eller responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Ingen kjøretøy funnet",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parameterfeil, responsen inneholder kun beskrivelse av feil som responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KjoretoysokResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rest/distribusjon/kjoretoy/v2.0/sok/kunde": {
+            "get": {
+                "tags": [
+                    "kundesok"
+                ],
+                "description": "Tilbyr søk på person og organisasjon",
+                "operationId": "sokKunde",
+                "parameters": [
+                    {
+                        "name": "navn",
+                        "in": "query",
+                        "description": "Organisasjonsnavn eller fullt personnavn for eier, medeier eller leasingtaker. Elementet kan ikke brukes i kombinasjon med for-, mellom- eller etternavn.",
+                        "example": "Hans Nordmann Hansen"
+                    },
+                    {
+                        "name": "fornavn",
+                        "in": "query",
+                        "description": "Fornavn for eier, medeier eller leasingtaker. Elementet kan ikke brukes i kombinasjon med Navn og søket returnerer bare eksakte treff.",
+                        "example": "Hans"
+                    },
+                    {
+                        "name": "mellomnavn",
+                        "in": "query",
+                        "description": "Mellomnavn for eier, medeier eller leasingtaker. Elementet kan ikke brukes i kombinasjon med Navn og søket returnerer bare eksakte treff.",
+                        "example": "Nordmann"
+                    },
+                    {
+                        "name": "etternavn",
+                        "in": "query",
+                        "description": "Etternavn for eier, medeier eller leasingtaker. Elementet kan ikke brukes i kombinasjon med Navn og søket returnerer bare eksakte treff.",
+                        "example": "Hansen"
+                    },
+                    {
+                        "name": "eiertype",
+                        "in": "query",
+                        "description": "Spesifiserer om søket omfatter PERSON, ORGANISASJON eller BEGGE",
+                        "required": true,
+                        "example": "PERSON"
+                    },
+                    {
+                        "name": "fodselsdato",
+                        "in": "query",
+                        "description": "Hvis valgt vil søket filtrere resultat basert på treff som matcher fødselsdato, fødeår",
+                        "example": "1980-06-18"
+                    },
+                    {
+                        "name": "fonetisk",
+                        "in": "query",
+                        "description": "Kan kun oppgis i kombinasjon med elementet navn og angir om det skal benyttes et fonetisk søk i registeret.",
+                        "example": false
+                    },
+                    {
+                        "name": "kjonn",
+                        "in": "query",
+                        "description": "Hvis spesifisert vil søket filtrere resultat basert på kjønn. I denne versjonen støttes verdiene M og K i spørringen. Kun støttet med eiertype PERSON",
+                        "example": "K"
+                    },
+                    {
+                        "name": "fylke",
+                        "in": "query",
+                        "description": "Hvis spesifisert vil søket filtrere resultat basert på treff som matcher fylke. ",
+                        "example": "Troms og Finnmark"
+                    },
+                    {
+                        "name": "kommune",
+                        "in": "query",
+                        "description": "Hvis valgt vil søket filtrere resultat basert på treff som matcher kommunenavn.",
+                        "example": "Indre Østfold"
+                    },
+                    {
+                        "name": "postnummer",
+                        "in": "query",
+                        "description": "Hvis valgt vil søket filtrere resultat basert på treff som matcher postnummer.",
+                        "example": "0661"
+                    },
+                    {
+                        "name": "poststed",
+                        "in": "query",
+                        "description": "Hvis valgt vil søket filtrere resultat basert på treff som matcher poststed.",
+                        "example": "Gamle Fredrikstad"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Søk gjennomført, responsen inneholder eventuelle treff og/eller responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KundeSokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Ingen kunder funnet",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KundeSokResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parameterfeil, responsen inneholder kun beskrivelse av feil som responskoder",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KundeSokResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AdrGodkjenning": {
+                "type": "object",
+                "properties": {
+                    "adrAnmerkninger": {
+                        "type": "string"
+                    },
+                    "adrAttestnummer": {
+                        "type": "string"
+                    },
+                    "adrBeskyttelseOverLastbarerKode": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "adrEX2EX3GodkjentGods": {
+                        "type": "string"
+                    },
+                    "adrKjoretoyLukket": {
+                        "type": "boolean"
+                    },
+                    "adrNasjonaleKrav": {
+                        "type": "boolean"
+                    },
+                    "adrPabyggTypeKode": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "adrTankTekniskeData": {
+                        "$ref": "#/components/schemas/AdrTankTekniskeData"
+                    },
+                    "adrTidligereBestemmelser": {
+                        "type": "boolean"
+                    },
+                    "adrTilleggsbremsEffekt": {
+                        "type": "string"
+                    },
+                    "adrTilleggsbremsIkkeAktuelt": {
+                        "type": "boolean"
+                    },
+                    "adrTransportorAdresse": {
+                        "type": "string"
+                    },
+                    "adrTransportorNavn": {
+                        "type": "string"
+                    },
+                    "adrTransportorPostnrSted": {
+                        "type": "string"
+                    },
+                    "adrTypeKode": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "adrVekselbyggID": {
+                        "type": "string"
+                    },
+                    "adrVekselbyggIDFra": {
+                        "type": "string"
+                    },
+                    "adrVekselbyggIDTil": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AdrTankGodkjentGods": {
+                "type": "object",
+                "properties": {
+                    "adrTankGodkjentFor": {
+                        "type": "string"
+                    },
+                    "adrTankStofferIhhtTankkode": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "AdrTankInndelingVolum": {
+                "type": "object",
+                "properties": {
+                    "adrTankInndelingVolum": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                }
+            },
+            "AdrTankTekniskeData": {
+                "type": "object",
+                "properties": {
+                    "adrTankAntallRom": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "adrTankFabrikat": {
+                        "type": "string"
+                    },
+                    "adrTankGodkjenningsnummer": {
+                        "type": "string"
+                    },
+                    "adrTankGodkjentGods": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AdrTankGodkjentGods"
+                        }
+                    },
+                    "adrTankInndeling": {
+                        "$ref": "#/components/schemas/AdrTankInndelingVolum"
+                    },
+                    "adrTankKode": {
+                        "type": "string"
+                    },
+                    "adrTankKofferdam": {
+                        "type": "boolean"
+                    },
+                    "adrTankLos": {
+                        "type": "boolean"
+                    },
+                    "adrTankNesteTetthetsproveDato": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "adrTankNesteTrykkproveDato": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "adrTankOverflyttetFra": {
+                        "type": "string"
+                    },
+                    "adrTankProduksjonsAr": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "adrTankSerienummer": {
+                        "type": "string"
+                    },
+                    "adrTankSpesielleBestemmelser": {
+                        "type": "string"
+                    },
+                    "adrTankVolum": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Adresse": {
+                "type": "object",
+                "properties": {
+                    "adresselinje1": {
+                        "type": "string"
+                    },
+                    "adresselinje2": {
+                        "type": "string"
+                    },
+                    "adresselinje3": {
+                        "type": "string"
+                    },
+                    "kommunenavn": {
+                        "type": "string"
+                    },
+                    "kommunenummer": {
+                        "type": "string"
+                    },
+                    "land": {
+                        "type": "string"
+                    },
+                    "landkode": {
+                        "type": "string",
+                        "description": "IsoAlpha3Kode for land"
+                    },
+                    "postnummer": {
+                        "type": "string"
+                    },
+                    "poststed": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Aksel": {
+                "type": "object",
+                "properties": {
+                    "antallHjul": {
+                        "type": "integer",
+                        "description": "C2 - s.1.3 - Antall hjul pa akselniva. Iterer for totalt antall",
+                        "format": "int32"
+                    },
+                    "avstandTilNesteAksling": {
+                        "type": "integer",
+                        "description": "D1 og D2 - s.2.1 - Akselavstander Oppgis i mm",
+                        "format": "int32"
+                    },
+                    "belastbar": {
+                        "type": "boolean"
+                    },
+                    "bremseAksel": {
+                        "type": "boolean",
+                        "description": "s.1.1.4 - Bremsende Aksel? Iterer for totalt antall. Plassering under. Gjelder for traktor"
+                    },
+                    "drivAksel": {
+                        "type": "boolean",
+                        "description": "C5 og C5.1 - s.1.3.3 - Aksel med driv. Iterer for totalt antall. Plassering under"
+                    },
+                    "egenvektAksel": {
+                        "type": "integer",
+                        "description": "Egenvekt for aksel - spesifikk",
+                        "format": "int32"
+                    },
+                    "egenvektAkselMaks": {
+                        "type": "integer",
+                        "description": "D14.1 - s.2.6.1.1 - Egenvekt for aksel - Max",
+                        "format": "int32"
+                    },
+                    "egenvektAkselMin": {
+                        "type": "integer",
+                        "description": "D14.1 - s.2.6.1.1 - Egenvekt for aksel - Min",
+                        "format": "int32"
+                    },
+                    "fordelingAvTillattTotalvektAkselMaks": {
+                        "type": "integer",
+                        "description": "D17 - s.2.8.1 - Fordeling av tillatt totalvekt for aksel - Maks",
+                        "format": "int32"
+                    },
+                    "fordelingAvTillattTotalvektAkselMin": {
+                        "type": "integer",
+                        "description": "D16 - s.2.8.1 - Fordeling av tillatt totalvekt for aksel - Min",
+                        "format": "int32"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "loftbar": {
+                        "type": "boolean"
+                    },
+                    "luftfjaering": {
+                        "type": "boolean"
+                    },
+                    "maksAvstandTilNesteAksling": {
+                        "type": "integer",
+                        "description": "D1 og D2 - s.2.1 - Akselavstander Oppgis i mm",
+                        "format": "int32"
+                    },
+                    "maksimalSporvidde": {
+                        "type": "integer",
+                        "description": "D5 og D6 - s.2.3.2 - Sporvidde maks",
+                        "format": "int32"
+                    },
+                    "minAvstandTilNesteAksling": {
+                        "type": "integer",
+                        "description": "D1 og D2 - s.2.1 - Akselavstander Oppgis i mm",
+                        "format": "int32"
+                    },
+                    "minimalSporvidde": {
+                        "type": "integer",
+                        "description": "Sporvidde minimum",
+                        "format": "int32"
+                    },
+                    "plasseringAksel": {
+                        "type": "string",
+                        "description": "C5.1 og C4 s.1.3.3 og s.1.3.2 - Plassering av aksel"
+                    },
+                    "sporvidde": {
+                        "type": "integer",
+                        "description": "D3 og D4 - s.2.3.1 - Sporvidde",
+                        "format": "int32"
+                    },
+                    "styreAksel": {
+                        "type": "boolean",
+                        "description": "C3 og C4 - s.1.3.2 - Aksel med styring? Iterer for totalt antall. Plassering under"
+                    },
+                    "tekniskTillattAkselLast": {
+                        "type": "integer",
+                        "description": "D21 - s.2.9 - Teknisk tillatt aksellast",
+                        "format": "int32"
+                    },
+                    "tekniskTillattAkselLastForhoyet": {
+                        "type": "integer",
+                        "description": "D22.1 - s.2.9 - Teknisk tillatt aksellast forhoyet",
+                        "format": "int32"
+                    },
+                    "tekniskTillattAkselLastVeg": {
+                        "type": "integer",
+                        "description": "D21 - s.2.9 - Teknisk tillatt aksellast pa veg",
+                        "format": "int32"
+                    }
+                }
+            },
+            "AkselDekkOgFelg": {
+                "type": "object",
+                "properties": {
+                    "akselId": {
+                        "type": "integer",
+                        "description": "Aksel ID",
+                        "format": "int64"
+                    },
+                    "belastningskodeDekk": {
+                        "type": "string",
+                        "description": "H1-75 - s.6.6.1.1.1 - \"load\""
+                    },
+                    "belastningskodeDekkTraktor": {
+                        "type": "string",
+                        "description": "belastningskode, \"load\" (Traktor)"
+                    },
+                    "dekkdimensjon": {
+                        "type": "string",
+                        "description": "H1-75 - s.6.6.1.1.1 - \"size\" eks. 205/60R16"
+                    },
+                    "felgdimensjon": {
+                        "type": "string",
+                        "description": "H1-75 - s.6.6.1.1.1 - \"rimsize\" eks. 7.0JX16"
+                    },
+                    "hastighetskodeDekk": {
+                        "type": "string",
+                        "description": "H1-75 - s.6.6.1.1.1 - \"speed\" eks. 91V"
+                    },
+                    "innpress": {
+                        "type": "string",
+                        "description": "H1-75 - s.6.6.1.1.1 - eks. 55"
+                    },
+                    "tillattAkselLastTraktor": {
+                        "type": "integer",
+                        "description": "Tillatt aksellast for denne dekkdimensjonen (Traktor)",
+                        "format": "int32"
+                    },
+                    "tvilling": {
+                        "type": "boolean",
+                        "description": "s.1.1 - Aksel med tvilling?"
+                    }
+                }
+            },
+            "AkselDekkOgFelgKombinasjon": {
+                "type": "object",
+                "properties": {
+                    "akselDekkOgFelg": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AkselDekkOgFelg"
+                        }
+                    },
+                    "tillattTotalvektTraktor": {
+                        "type": "integer",
+                        "description": "Tillatt totalvekt for dekkdimensjoner (Traktor)",
+                        "format": "int32"
+                    }
+                },
+                "description": "H1-75 - s.6.6.1.1.1 Id for kombinasjon av dekk og felg - Id forsvinner siden kombinasjonene angis av struktur"
+            },
+            "AkselGruppe": {
+                "type": "object",
+                "properties": {
+                    "akselListe": {
+                        "$ref": "#/components/schemas/AkselListe"
+                    },
+                    "egenvektAkselGruppe": {
+                        "type": "integer",
+                        "description": "Egenvekt for akselgruppe - spesifikk",
+                        "format": "int32"
+                    },
+                    "egenvektAkselGruppeMaks": {
+                        "type": "integer",
+                        "description": "D14.1 - s.2.6.1.1 - Egenvekt for akselgruppe - Max",
+                        "format": "int32"
+                    },
+                    "egenvektAkselGruppeMin": {
+                        "type": "integer",
+                        "description": "D14.1 - s.2.6.1.1 - Egenvekt for akselgruppe - Min",
+                        "format": "int32"
+                    },
+                    "fordelingAvTillattTotalvektAkselGruppeMaks": {
+                        "type": "integer",
+                        "description": "D17 - s.2.8.1 - Fordeling av tillatt totalvekt for akselgruppe - Maks",
+                        "format": "int32"
+                    },
+                    "fordelingAvTillattTotalvektAkselGruppeMin": {
+                        "type": "integer",
+                        "description": "D16 - s.2.8.1 - Fordeling av tillatt totalvekt for akselgruppe - Min",
+                        "format": "int32"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "plasseringAkselGruppe": {
+                        "type": "string",
+                        "description": "C5.1 og C4 s.1.3.3 og s.1.3.2 - Plassering av akselgruppe"
+                    },
+                    "tekniskTillattAkselGruppeLast": {
+                        "type": "integer",
+                        "description": "D21 - s.2.9 - Teknisk tillatt aksellast",
+                        "format": "int32"
+                    },
+                    "tekniskTillattAkselGruppeLastVeg": {
+                        "type": "integer",
+                        "description": "D21 - s.2.9 - Teknisk tillatt aksellast pa veg",
+                        "format": "int32"
+                    }
+                }
+            },
+            "AkselInfo": {
+                "type": "object",
+                "properties": {
+                    "akselGruppe": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AkselGruppe"
+                        }
+                    },
+                    "antallAksler": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "forbindelseMellomDrivaksler": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    }
+                }
+            },
+            "AkselListe": {
+                "type": "object",
+                "properties": {
+                    "aksel": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Aksel"
+                        }
+                    }
+                }
+            },
+            "Bremse": {
+                "type": "object",
+                "properties": {
+                    "abs": {
+                        "type": "boolean",
+                        "description": "J1 - s.8.5 - Blokkeringsfritt bremsesystem"
+                    },
+                    "bremsesystem": {
+                        "type": "string",
+                        "description": "7.2 - Bremsesystem (MC + Traktor)"
+                    },
+                    "driftsbremsBak": {
+                        "type": "string",
+                        "description": "driftsbrems bak"
+                    },
+                    "driftsbremsForan": {
+                        "type": "string",
+                        "description": "driftsbrems foran"
+                    },
+                    "tilhengerBremseforbindelse": {
+                        "type": "array",
+                        "description": "Tilhenger bremseforbindelse (luft/mekanisk/el)",
+                        "items": {
+                            "type": "string",
+                            "description": "Tilhenger bremseforbindelse (luft/mekanisk/el)"
+                        }
+                    },
+                    "trykkMeterledningTilhengerkopling": {
+                        "type": "number",
+                        "description": "Trykk i materledning i tilhengerkopling i bar",
+                        "format": "float"
+                    },
+                    "trykktilsluttning1": {
+                        "type": "number",
+                        "description": "8.11.4.1 - Trykktilsluttning (1.ledning) (Traktor) i kPa",
+                        "format": "float"
+                    },
+                    "trykktilsluttning2": {
+                        "type": "number",
+                        "description": "8.11.4.2 - Trykktilsluttning (2.ledning) (Traktor) i kPa",
+                        "format": "float"
+                    }
+                }
+            },
+            "BruktImportInfo": {
+                "type": "object",
+                "properties": {
+                    "importland": {
+                        "$ref": "#/components/schemas/Importland"
+                    },
+                    "kilometerstand": {
+                        "type": "integer",
+                        "description": "Kilometerstand ved import",
+                        "format": "int32"
+                    },
+                    "tidligereUtenlandskKjennemerke": {
+                        "type": "string"
+                    },
+                    "tidligereUtenlandskVognkortNummer": {
+                        "type": "string"
+                    }
+                }
+            },
+            "DekkOgFelg": {
+                "type": "object",
+                "properties": {
+                    "akselDekkOgFelgKombinasjon": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AkselDekkOgFelgKombinasjon"
+                        }
+                    },
+                    "dekkOgFelgSidevogn": {
+                        "$ref": "#/components/schemas/DekkOgFelgSidevogn"
+                    }
+                }
+            },
+            "DekkOgFelgSidevogn": {
+                "type": "object",
+                "properties": {
+                    "belastningskodeDekkSidevogn": {
+                        "type": "string"
+                    },
+                    "dekkdimensjonSidevogn": {
+                        "type": "string"
+                    },
+                    "felgdimensjonSidevogn": {
+                        "type": "string"
+                    },
+                    "hastighetskodeDekkSidevogn": {
+                        "type": "string"
+                    },
+                    "innpressSidevogn": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Dimensjoner": {
+                "type": "object",
+                "properties": {
+                    "bredde": {
+                        "type": "integer",
+                        "description": "D9 - s2.4.2.2 - Kjoretoyets storste utvendige bredde, speil ikke medregnet. Se eventuell merknad til kap. 2 i kjoretoyforskriften. Oppgis i millimeter",
+                        "format": "int32"
+                    },
+                    "hoyde": {
+                        "type": "integer",
+                        "description": "D11 - s2.4.2.3 - Kjoretoyets storste utvendige hoyde. Oppgis i millimeter",
+                        "format": "int32"
+                    },
+                    "lengde": {
+                        "type": "integer",
+                        "description": "D7 - s2.4.2.1 - Kjoretoyets storste utvendige lengde fra forreste til bakerste punkt. Se eventuelt merknad til kap.2 i kjoretoyforskriften. Oppgis i millimeter",
+                        "format": "int32"
+                    },
+                    "lengdeInnvendigLasteplan": {
+                        "type": "integer",
+                        "description": "D8.1 - s2.4.2.1.1 - Oppgis i millimeter",
+                        "format": "int32"
+                    },
+                    "maksimalBredde": {
+                        "type": "integer",
+                        "description": "D10 - s2.4.2.2 - Kjoretoyets storste utvendige bredde, speil ikke medregnet. Se eventuell merknad til kap. 2 i kjoretoyforskriften. Oppgis i millimeter",
+                        "format": "int32"
+                    },
+                    "maksimalHoyde": {
+                        "type": "integer",
+                        "description": "D12 - s2.4.2.3 - Maksimumsverdi. Kjoretoyets storste utvendige hoyde. Oppgis i millimeter",
+                        "format": "int32"
+                    },
+                    "maksimalLengde": {
+                        "type": "integer",
+                        "description": "D8 - s2.4.2.1 - Maximumsverdi for kjoretoyets storste utvendige lengde fra forreste til bakerste punkt. Se eventuelt merknad til kap.2 i kjoretoyforskriften. Oppgis i millimeter",
+                        "format": "int32"
+                    },
+                    "maksimalLengdeInnvendigLasteplan": {
+                        "type": "integer",
+                        "description": "D8.2 - s2.4.2.1.1 - Oppgis i millimeter",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Drivstoff": {
+                "type": "object",
+                "properties": {
+                    "drivstoffKode": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "effektVektForhold": {
+                        "type": "number",
+                        "description": "Power - weight ratio",
+                        "format": "float"
+                    },
+                    "maksEffektPrTime": {
+                        "type": "number",
+                        "description": "E15 - s.3.3.1.1 - Maks effekt i kW pr time",
+                        "format": "float"
+                    },
+                    "maksNettoEffekt": {
+                        "type": "number",
+                        "description": "E6 - s.3.2.1.8 - Maks nettoeffekt i kW",
+                        "format": "float"
+                    },
+                    "maksNettoEffektVedOmdreiningstallMin1": {
+                        "type": "integer",
+                        "description": "E7 - s.3.2.1.8 - Maks nettoeffekt i kW ved omdreiningstall Min-1",
+                        "format": "int32"
+                    },
+                    "maksNettoEffektVedOmdreiningstallMin1Maks": {
+                        "type": "integer",
+                        "description": "E7.1 - s.3.2.1.8 - Maks nettoeffekt i kW ved omdreiningstall Min-1 (Maks)",
+                        "format": "int32"
+                    },
+                    "maksOmdreining": {
+                        "type": "integer",
+                        "description": "E7.2 - s.3.2.1.9 - Maks omdreining for motor",
+                        "format": "int32"
+                    },
+                    "spenning": {
+                        "type": "number",
+                        "description": "Spenning i volt",
+                        "format": "float"
+                    },
+                    "tomgangsOmdreiningstall": {
+                        "type": "integer",
+                        "description": "E5.1 - s.3.2.1.6 - Tomgangs omdreiningstall",
+                        "format": "int32"
+                    }
+                }
+            },
+            "DyretransportGodkjenning": {
+                "type": "object",
+                "properties": {
+                    "fornyelse": {
+                        "type": "boolean"
+                    },
+                    "gulvareal": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "hestetransporttype": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "takhoyde": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "EFTypegodkjenningsId": {
+                "type": "object",
+                "properties": {
+                    "typegodkjenningNrTekst": {
+                        "type": "string"
+                    },
+                    "typegodkjenningnummer": {
+                        "$ref": "#/components/schemas/Typegodkjenningsnummer"
+                    },
+                    "variant": {
+                        "type": "string"
+                    },
+                    "versjon": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Eierforhold": {
+                "type": "object",
+                "properties": {
+                    "eier": {
+                        "$ref": "#/components/schemas/PersonEnhet"
+                    },
+                    "leasingtaker": {
+                        "$ref": "#/components/schemas/PersonEnhet"
+                    },
+                    "medeier": {
+                        "$ref": "#/components/schemas/PersonEnhet"
+                    },
+                    "underenhet": {
+                        "$ref": "#/components/schemas/PersonEnhet"
+                    },
+                    "vedtakstidspunkt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "description": "Gjeldende eierforhold for kjøretøy"
+            },
+            "Enhet": {
+                "type": "object",
+                "properties": {
+                    "organisasjonsnavn": {
+                        "type": "string"
+                    },
+                    "organisasjonsnummer": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Fabrikant": {
+                "type": "object",
+                "properties": {
+                    "fabrikantAdresse": {
+                        "type": "string",
+                        "description": "Adresse for fabrikant"
+                    },
+                    "fabrikantNavn": {
+                        "type": "string",
+                        "description": "Navn pa fabrikant"
+                    },
+                    "fabrikantRepresentantAdresse": {
+                        "type": "string",
+                        "description": "Adresse for fabrikants representant"
+                    },
+                    "fabrikantRepresentantNavn": {
+                        "type": "string",
+                        "description": "Navn pa fabrikantens representant"
+                    }
+                },
+                "description": "B6 - s0.5 - Fabrikant av basis kjoretoy"
+            },
+            "ForbrukOgUtslipp": {
+                "type": "object",
+                "properties": {
+                    "antallPartikler": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "co2BlandetKjoring": {
+                        "type": "number",
+                        "description": "N4 - t.3 - Utslipp CO2 ved blandet kjoring",
+                        "format": "float"
+                    },
+                    "co2Bykjoring": {
+                        "type": "number",
+                        "description": "N3.1 - t.3 - Utslipp CO2 ved bykjoring",
+                        "format": "float"
+                    },
+                    "co2Landeveiskjoring": {
+                        "type": "number",
+                        "description": "N3.2 - t.3 - Utslipp CO2 ved landeveiskjoring",
+                        "format": "float"
+                    },
+                    "coProsent": {
+                        "type": "number",
+                        "description": "2.2 - CO % (MC)",
+                        "format": "float"
+                    },
+                    "elEnergiforbruk": {
+                        "type": "integer",
+                        "description": "Oppgis bare for elektrisk motor. Oppgis i Wh/km",
+                        "format": "int32"
+                    },
+                    "forbrukBlandetKjoring": {
+                        "type": "number",
+                        "description": "N3 - t.3 - Forbruk blandetkjoring",
+                        "format": "float"
+                    },
+                    "forbrukBykjoring": {
+                        "type": "number",
+                        "description": "N1 - t.3 - Forbruk bykjoring",
+                        "format": "float"
+                    },
+                    "forbrukLandeveiskjoring": {
+                        "type": "number",
+                        "description": "N2 - t.3 - Forbruk landeveiskjoring",
+                        "format": "float"
+                    },
+                    "malemetode": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "malemetodeAnnen": {
+                        "type": "string",
+                        "description": "Angis dersom målemetode er ANNEN i malemetode"
+                    },
+                    "partikkelfilterFabrikkmontert": {
+                        "type": "boolean",
+                        "description": "kryss av dersom det finnes fabrikkmontert partikkelfilter"
+                    },
+                    "partikkelfilterUtslipp": {
+                        "type": "boolean"
+                    },
+                    "rekkeviddeKm": {
+                        "type": "integer",
+                        "description": "Elektrisk rekkevidde i km",
+                        "format": "int32"
+                    },
+                    "utslippCOgPrKWh": {
+                        "type": "number",
+                        "description": "CO i g/kWh (Traktor)",
+                        "format": "float"
+                    },
+                    "utslippCOmgPrKm": {
+                        "type": "number",
+                        "description": "M6 - t.3 - CO i mg/km - TestTypeIEuro5_6 og TestTypeI - M1 - t.2 - CO i g/km (NB husk a konvertere)",
+                        "format": "float"
+                    },
+                    "utslippHCgPrKWh": {
+                        "type": "number",
+                        "description": "HC i g/kWh (Traktor)",
+                        "format": "float"
+                    },
+                    "utslippHCgPrMin": {
+                        "type": "number",
+                        "description": "2.2 - HC i g/min (MC)",
+                        "format": "float"
+                    },
+                    "utslippHCmgPrKm": {
+                        "type": "number",
+                        "description": "TestTypeI - M2 - t.2 - HC i mg/km - NB husk a gjore om fra g til mg.",
+                        "format": "float"
+                    },
+                    "utslippHCogNOxMgPrKm": {
+                        "type": "number",
+                        "description": "TestTypeI - M4 - t.2 - HC og NOx oppgis i g/km - NB ma konverteres til mg",
+                        "format": "float"
+                    },
+                    "utslippKorrigertAbsorpsjonskoeffisient": {
+                        "type": "number",
+                        "description": "Royktall for dieselmotorer.",
+                        "format": "float"
+                    },
+                    "utslippNMHCmgPrKm": {
+                        "type": "number",
+                        "description": "M8 - t.3 - NMHC i mg/km - TestTypeIEuro5_6",
+                        "format": "float"
+                    },
+                    "utslippNOxGPrKWh": {
+                        "type": "number",
+                        "description": "NOx i g/kWh (Traktor)",
+                        "format": "float"
+                    },
+                    "utslippNOxMgPrKm": {
+                        "type": "number",
+                        "description": "M9 - t.3 - NOx i mg/km - TestTypeIEuro5_6 og TestTypeI - M3 - t.2 - NOx i g/km- NB husk a gjore om fra g til mg",
+                        "format": "float"
+                    },
+                    "utslippPartikkelAntallPrKm": {
+                        "type": "number",
+                        "description": "M12 - t.3 - Partikler i #/km (antall/km) - TestTypeIEuro5_6",
+                        "format": "float"
+                    },
+                    "utslippPartiklerGPrKWh": {
+                        "type": "number",
+                        "description": "Partikkel i g/kWh (Traktor)",
+                        "format": "float"
+                    },
+                    "utslippPartiklerMgPrKm": {
+                        "type": "number",
+                        "description": "M11 - t.3 - Partikkelutslipp i mg/km - TestTypeIEuro5_6 og TestTypeI - M5 - t.2 - Partikkel i g/km - NB husk a konvertere g til mg",
+                        "format": "float"
+                    },
+                    "utslippTHCmgPrKm": {
+                        "type": "number",
+                        "description": "M7 - t.3 - THC i mg/km - TestTypeIEuro5_6",
+                        "format": "float"
+                    },
+                    "utslippTHCogNOxMgPrKm": {
+                        "type": "number",
+                        "description": "M10 - t.3 - THC og NOx i mg/km - TestTypeIEuro5_6",
+                        "format": "float"
+                    },
+                    "vektetKombinertDrivstoff": {
+                        "type": "number",
+                        "description": "Bare for hybrikdkjoretoy - Vektet kombinert i l/100 km",
+                        "format": "float"
+                    },
+                    "vektetKombinertDrivstoffCO2": {
+                        "type": "integer",
+                        "description": "Bare for hybrikdkjoretoy - CO2 Vektet kombinert i g/km",
+                        "format": "int32"
+                    },
+                    "wltpKjoretoyspesifikk": {
+                        "$ref": "#/components/schemas/WLTP"
+                    },
+                    "wltpTypegodkjenningMaks": {
+                        "$ref": "#/components/schemas/WLTP"
+                    },
+                    "wltpTypegodkjenningMedium": {
+                        "$ref": "#/components/schemas/WLTP"
+                    },
+                    "wltpTypegodkjenningMin": {
+                        "$ref": "#/components/schemas/WLTP"
+                    }
+                }
+            },
+            "ForstegangsTekniskGodkjenning": {
+                "type": "object",
+                "properties": {
+                    "bruktimport": {
+                        "$ref": "#/components/schemas/BruktImportInfo"
+                    },
+                    "forstegangRegistrertDato": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "fortollingOgMva": {
+                        "$ref": "#/components/schemas/FortollingOgMva"
+                    },
+                    "godkjenningsId": {
+                        "type": "string",
+                        "description": "GodkjenningsId for førtegangs teknisk godkjenning"
+                    },
+                    "godkjenningsundertype": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "gyldigFraDato": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "gyldigFraDatoTid": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "kvalitetskodeForstegangRegDato": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "oppbygdMedAvgiftsfritak": {
+                        "$ref": "#/components/schemas/OppbygdMedAvgiftsfritak"
+                    },
+                    "unntak": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Unntak"
+                        }
+                    }
+                }
+            },
+            "Forstegangsregistrering": {
+                "type": "object",
+                "properties": {
+                    "registrertForstegangNorgeDato": {
+                        "type": "string",
+                        "description": "Dato for når kjøretøyet ble førstegangsregistrert i Norge",
+                        "format": "date"
+                    }
+                }
+            },
+            "FortollingOgMva": {
+                "type": "object",
+                "properties": {
+                    "annenReferanse": {
+                        "type": "string"
+                    },
+                    "beskrivelse": {
+                        "type": "string"
+                    },
+                    "dokumentreferanse": {
+                        "type": "string"
+                    },
+                    "fortollingsreferanse": {
+                        "type": "string"
+                    },
+                    "linje": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Generelt": {
+                "type": "object",
+                "properties": {
+                    "fabrikant": {
+                        "type": "array",
+                        "description": "B6 - s0.5 - Fabrikant av basis kjoretoy",
+                        "items": {
+                            "$ref": "#/components/schemas/Fabrikant"
+                        }
+                    },
+                    "ferdigbyggetEllerEndretSomFolger": {
+                        "type": "string",
+                        "description": "Completed and altered as follows."
+                    },
+                    "handelsbetegnelse": {
+                        "type": "array",
+                        "description": "B3 - s0.2.1 - Handelsbetegnelse: eg. \"S60\"",
+                        "items": {
+                            "type": "string",
+                            "description": "B3 - s0.2.1 - Handelsbetegnelse: eg. \"S60\""
+                        }
+                    },
+                    "merke": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Merke"
+                        }
+                    },
+                    "tekniskKode": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "tekniskUnderkode": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "typebetegnelse": {
+                        "type": "string",
+                        "description": "A11 - s0.2 - Type: eg. \"1EXE\""
+                    },
+                    "unntakFra": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Girutveksling": {
+                "type": "object",
+                "properties": {
+                    "girNummer": {
+                        "type": "string"
+                    },
+                    "girutveksling": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "description": "Angir utveksling pr. gir. Gear ratio"
+            },
+            "Godkjenning": {
+                "type": "object",
+                "properties": {
+                    "forstegangsGodkjenning": {
+                        "$ref": "#/components/schemas/ForstegangsTekniskGodkjenning"
+                    },
+                    "kjoretoymerknad": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Kjoretoymerknad"
+                        }
+                    },
+                    "registreringsbegrensninger": {
+                        "$ref": "#/components/schemas/Registreringsbegrensninger"
+                    },
+                    "tekniskGodkjenning": {
+                        "$ref": "#/components/schemas/TekniskGodkjenning"
+                    },
+                    "tilleggsgodkjenninger": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Tilleggsgodkjenning"
+                        }
+                    }
+                }
+            },
+            "Importland": {
+                "type": "object",
+                "properties": {
+                    "landNavn": {
+                        "type": "string"
+                    },
+                    "landkode": {
+                        "type": "string"
+                    }
+                }
+            },
+            "KarosseriOgLasteplan": {
+                "type": "object",
+                "properties": {
+                    "antallDorer": {
+                        "type": "array",
+                        "description": "K2 - s.9.3.1 - Antall dorer",
+                        "items": {
+                            "type": "integer",
+                            "description": "K2 - s.9.3.1 - Antall dorer",
+                            "format": "int32"
+                        }
+                    },
+                    "avstandNavSkjermbueBak": {
+                        "type": "integer",
+                        "description": "Avstand mellom senter nav og skjermbue - bak",
+                        "format": "int32"
+                    },
+                    "avstandNavSkjermbueForan": {
+                        "type": "integer",
+                        "description": "Avstand mellom senter nav og skjermbue - foran",
+                        "format": "int32"
+                    },
+                    "bussKategori": {
+                        "type": "string",
+                        "description": "Busskategori"
+                    },
+                    "dorUtforming": {
+                        "type": "array",
+                        "description": "Dorutforming",
+                        "items": {
+                            "type": "string",
+                            "description": "Dorutforming"
+                        }
+                    },
+                    "fargeFjar": {
+                        "type": "string",
+                        "description": "Farge fjær"
+                    },
+                    "forankringSikkerhetsseler": {
+                        "type": "string",
+                        "description": "Sikkerhetsselers forankring plass og ant (MC)"
+                    },
+                    "forervern": {
+                        "type": "string",
+                        "description": "10.1 - Personvern (Ramme/forerhus) Fabrikat,typeg. merke"
+                    },
+                    "forervernBoyle": {
+                        "type": "string",
+                        "description": "10.1.3 - Personvern boyle (Beskrivelse foran/bak, sammenlegbar etc)"
+                    },
+                    "godkjentADR": {
+                        "type": "string",
+                        "description": "Godkjent for ADR transport (Ja/nei/type)"
+                    },
+                    "hydrauliskLoft": {
+                        "type": "boolean",
+                        "description": "12.3 - Hydraulisk loft (trepunktskopling) ja/nei"
+                    },
+                    "karosseriArt": {
+                        "type": "string",
+                        "description": "C2.1.1 - Karosseriets art (MC). Tekstlig beskrivelse av karosseriet."
+                    },
+                    "karosseritype": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "kjennemerketypeBak": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "kjennemerkestorrelseBak": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "kjennemerketypeForan": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "kjennemerkestorrelseForan": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "kjennemerketypeVenstre": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "kjennemerkestorrelseVenstre": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "kjoringSide": {
+                        "type": "string",
+                        "description": "1.6 - Konstruert for hoyre eller venstre kjoring? Traktor"
+                    },
+                    "oppbygningUnderstellsnummer": {
+                        "type": "string",
+                        "description": "B4 - s0.3 - Oppbygningen av understellsnummer"
+                    },
+                    "overhengBak": {
+                        "type": "integer",
+                        "description": "Overheng bak",
+                        "format": "int32"
+                    },
+                    "pabyggsKode": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "passasjerHandtak": {
+                        "type": "string",
+                        "description": "B.1.4 - Passasjer handtak (MC)"
+                    },
+                    "plasseringAvDorer": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "plasseringFabrikasjonsplate": {
+                        "type": "array",
+                        "description": "K8 - s.9.17.1 - Plassering av fabrikasjonsplate. Kan vare flere",
+                        "items": {
+                            "$ref": "#/components/schemas/KodeverkType"
+                        }
+                    },
+                    "plasseringMerkeplateTrimming": {
+                        "type": "string",
+                        "description": "B.1.6 - Plassering av merkeplate mot trimming (MC)"
+                    },
+                    "plasseringUnderstellsnummer": {
+                        "type": "array",
+                        "description": "K9 - s.9.17.1 - Plassering av understellsnummer",
+                        "items": {
+                            "$ref": "#/components/schemas/KodeverkType"
+                        }
+                    },
+                    "rFarge": {
+                        "type": "array",
+                        "description": "R-Farge. Repeterende felt. COC lagrer kun en verdi her.",
+                        "items": {
+                            "$ref": "#/components/schemas/KodeverkType"
+                        }
+                    },
+                    "sikkerhetsseler": {
+                        "type": "string",
+                        "description": "Antall og plassering sikkerhetsseler (MC)"
+                    },
+                    "styremekanismeArt": {
+                        "type": "string",
+                        "description": "Styremekanismens art (MC + Traktor)"
+                    },
+                    "temperaturregulertSkap": {
+                        "type": "boolean",
+                        "description": "Temperaturregulert skap ja/nei"
+                    },
+                    "vendbarForerplass": {
+                        "type": "boolean",
+                        "description": "1.4 - Vendbar forerplass (Ja/nei pa traktor)"
+                    }
+                }
+            },
+            "Kjennemerke": {
+                "type": "object",
+                "properties": {
+                    "fomTidspunkt": {
+                        "type": "string",
+                        "description": "Dato kjennemerket ble knyttet til kjøretøy",
+                        "format": "date-time"
+                    },
+                    "kjennemerke": {
+                        "type": "string",
+                        "description": "Bokstav og tallkombinasjonen på kjennemerket"
+                    },
+                    "kjennemerkekategori": {
+                        "type": "string",
+                        "description": "Angir bruksområde for kjennemerket, kjøretøy (identifiserer et kjøretøy), prøvekjennemerke eller personlig kjennemerke. NORMAL er deprekert og erstattet med KJORETOY",
+                        "enum": [
+                            "KJORETOY",
+                            "NORMAL",
+                            "PERSONLIG",
+                            "PROVE"
+                        ]
+                    },
+                    "kjennemerketype": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "tilTidspunkt": {
+                        "type": "string",
+                        "description": "Hvis kjennemerket har et til-tidspunkt, betyr det at knytningen til kjøretøyet ble fjernet på dette tidspunktet",
+                        "format": "date-time"
+                    }
+                },
+                "description": "Kjennemerke som er eller var knyttet til kjøretøyet på tidspunkt benyttet i spørring"
+            },
+            "Kjoretoy": {
+                "type": "object",
+                "properties": {
+                    "kjoretoyId": {
+                        "$ref": "#/components/schemas/KjoretoyIdentitet"
+                    },
+                    "forstegangsregistrering": {
+                        "$ref": "#/components/schemas/Forstegangsregistrering"
+                    },
+                    "eierskap": {
+                        "$ref": "#/components/schemas/Eierforhold"
+                    },
+                    "kjennemerke": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Kjennemerke"
+                        }
+                    },
+                    "registrering": {
+                        "$ref": "#/components/schemas/Registrering"
+                    },
+                    "godkjenning": {
+                        "$ref": "#/components/schemas/Godkjenning"
+                    },
+                    "periodiskKjoretoyKontroll": {
+                        "$ref": "#/components/schemas/PeriodiskKjoretoyKontroll"
+                    }
+                }
+            },
+            "KjoretoyIdentitet": {
+                "type": "object",
+                "properties": {
+                    "imid": {
+                        "type": "string"
+                    },
+                    "kjennemerke": {
+                        "type": "string"
+                    },
+                    "kjoretoyErKryssbyttet": {
+                        "type": "boolean"
+                    },
+                    "kryssbytter": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Kryssbytteinformasjon"
+                        }
+                    },
+                    "kuid": {
+                        "type": "string"
+                    },
+                    "merkekode": {
+                        "type": "string"
+                    },
+                    "understellsnummer": {
+                        "type": "string"
+                    },
+                    "unntattOffentlighet": {
+                        "type": "array",
+                        "description": "Kjoretoy kan være unntattOffentlighet ift eierforhold, tekniske data eller begge deler og som en konsekvens av konsumentens autorisasjon kan hele eller deler av responsen undertrykkes",
+                        "items": {
+                            "$ref": "#/components/schemas/KodeverkType"
+                        }
+                    }
+                },
+                "description": "Identifikatorer knyttet til kjøretøy"
+            },
+            "KjoretoyResponse": {
+                "type": "object",
+                "properties": {
+                    "kjoretoy": {
+                        "$ref": "#/components/schemas/Kjoretoy"
+                    },
+                    "responskoder": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Responskode"
+                        }
+                    },
+                    "eksternReferanseId": {
+                        "type": "string",
+                        "description": "Kun til intern bruk i Svv"
+                    }
+                }
+            },
+            "Kjoretoyklassifisering": {
+                "type": "object",
+                "properties": {
+                    "beskrivelse": {
+                        "type": "string"
+                    },
+                    "efTypegodkjenning": {
+                        "$ref": "#/components/schemas/EFTypegodkjenningsId"
+                    },
+                    "kjoretoyAvgiftsKode": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "nasjonalGodkjenning": {
+                        "$ref": "#/components/schemas/NasjonaltGodkjenningsnummer"
+                    },
+                    "spesielleKjennetegn": {
+                        "type": "string"
+                    },
+                    "tekniskKode": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "tekniskUnderkode": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "iSamsvarMedTypegodkjenning": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Kjoretoymerknad": {
+                "type": "object",
+                "properties": {
+                    "merknad": {
+                        "type": "string"
+                    },
+                    "merknadtypeKode": {
+                        "type": "string"
+                    }
+                },
+                "description": "Vognkort og typegodkjenningsmerknader"
+            },
+            "KjoretoysokResponse": {
+                "type": "object",
+                "properties": {
+                    "kjoretoy": {
+                        "type": "array",
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/KjoretoyResponse"
+                        }
+                    },
+                    "responskoder": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Responskode"
+                        }
+                    },
+                    "antallITreffliste": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "antallTreffTotalt": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "kjoretoyresponser": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/KjoretoyResponse"
+                        }
+                    }
+                }
+            },
+            "KodeverkType": {
+                "type": "object",
+                "properties": {
+                    "kodeBeskrivelse": {
+                        "type": "string"
+                    },
+                    "kodeNavn": {
+                        "type": "string"
+                    },
+                    "kodeTypeId": {
+                        "type": "string"
+                    },
+                    "kodeVerdi": {
+                        "type": "string"
+                    },
+                    "tidligereKodeVerdi": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "Kopling": {
+                "type": "object",
+                "properties": {
+                    "avstandFremstePktTilSenterKopling": {
+                        "type": "integer",
+                        "description": "Avstand fra fremste punkt pa kjoretoy til senter i kopling. Oppgis i millimeter",
+                        "format": "int32"
+                    },
+                    "avstandSenterKoplingTilBakerstePkt": {
+                        "type": "integer",
+                        "description": "Avstand fra kopling til bakerste ende (O grupper)",
+                        "format": "int32"
+                    },
+                    "avstandSenterKoplingTilForsteAksel": {
+                        "type": "integer",
+                        "description": "Avstand fra kopling til forste aksel. O grupper",
+                        "format": "int32"
+                    },
+                    "avstandSisteAkselTilKingpinMaks": {
+                        "type": "integer",
+                        "description": "Avstand fra bakerste aksel til kingpin maksimumsverdi. Oppgis i millimeter",
+                        "format": "int32"
+                    },
+                    "avstandSisteAkselTilKingpinMin": {
+                        "type": "integer",
+                        "description": "Avstand fra bakerste aksel til kingpin minimumsverdi. Oppgis i millimeter",
+                        "format": "int32"
+                    },
+                    "avstandSisteAkselTilSenterKopling": {
+                        "type": "integer",
+                        "description": "Avstand fra siste aksel til kopling. Oppgis i millimeter",
+                        "format": "int32"
+                    },
+                    "belastningDverdi": {
+                        "type": "number",
+                        "description": "45.1 - Tilhenger koplings D-verdi",
+                        "format": "float"
+                    },
+                    "belastningLoddrettMaks": {
+                        "type": "integer",
+                        "description": "12.2.4 - Maks loddrett belastning i kg pa kopling",
+                        "format": "int32"
+                    },
+                    "belastningSverdi": {
+                        "type": "number",
+                        "description": "45.1 - Tilhenger koplings S-verdi",
+                        "format": "float"
+                    },
+                    "belastningUverdi": {
+                        "type": "number",
+                        "description": "45.1 - Tilhenger koplings U-verdi",
+                        "format": "float"
+                    },
+                    "belastningVannrettMaks": {
+                        "type": "integer",
+                        "description": "12.2.4 - Maks vannrett belastning i kg pa kopling",
+                        "format": "int32"
+                    },
+                    "belastningVverdi": {
+                        "type": "number",
+                        "description": "45.1 - Tilhenger koplings V-verdi",
+                        "format": "float"
+                    },
+                    "eftype": {
+                        "type": "string",
+                        "description": "12.2.3 - EF type merke"
+                    },
+                    "fabrikantKopling": {
+                        "type": "string",
+                        "description": "12.2.2 - Fabrikant"
+                    },
+                    "handelsbetegnelseKopling": {
+                        "type": "string",
+                        "description": "Handelsebetegnelse for koplingen"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    }
+                }
+            },
+            "Korreksjon": {
+                "type": "object",
+                "properties": {
+                    "godkjenningErKorrigert": {
+                        "type": "boolean"
+                    },
+                    "virkningsdato": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "felterEndret": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "Krav": {
+                "type": "object",
+                "properties": {
+                    "kravomrade": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "kravoppfyllelse": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "vognkortmerknad": {
+                        "type": "string"
+                    }
+                },
+                "description": "Krav og kravoppfyllelse knyttet til godkjenningen"
+            },
+            "Kryssbytteinformasjon": {
+                "type": "object",
+                "properties": {
+                    "fomTidspunkt": {
+                        "type": "string",
+                        "description": "Tidspunktet kryssbyttet ble gjennomført.",
+                        "format": "date-time"
+                    },
+                    "kryssbyttetMedKuid": {
+                        "type": "string",
+                        "description": "Kuid på det andre kjøretøyet i kryssbyttet."
+                    },
+                    "tilTidspunkt": {
+                        "type": "string",
+                        "description": "Har kun verdi hvis kjøretøy er kryssbyttet flere ganger",
+                        "format": "date-time"
+                    }
+                },
+                "description": "Kjøretøy har vært del av et kryssbytte og har som følge av det byttet merkantile data med kjøretøyet identifisert med kryssbyttetMedKuid. Kryssbytter kan påvirke konsumenter som lagrer historikk knyttet til kjøretøy, basert på f.eks kjennemerke."
+            },
+            "LarevognGodkjenning": {
+                "type": "object",
+                "properties": {
+                    "forekortklasser": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "larevogn": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    }
+                }
+            },
+            "Lyd": {
+                "type": "object",
+                "properties": {
+                    "innvendigStoyniva": {
+                        "type": "integer",
+                        "description": "Oppgis i dB (A)",
+                        "format": "int32"
+                    },
+                    "kjorestoy": {
+                        "type": "integer",
+                        "description": "L1 - t.1 - Kjorestoy i db",
+                        "format": "int32"
+                    },
+                    "standstoy": {
+                        "type": "integer",
+                        "description": "L2 - t.1 - Standstoy i db",
+                        "format": "int32"
+                    },
+                    "stoyMalingOppgittAv": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "vedAntallOmdreininger": {
+                        "type": "integer",
+                        "description": "L2.1 - t.1 - Ved omdreiningstall (pr. min)",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Merke": {
+                "type": "object",
+                "properties": {
+                    "merke": {
+                        "type": "string",
+                        "description": "B1 - s0.1 - Merke: e.g. \"Volvo\""
+                    },
+                    "merkeKode": {
+                        "type": "string",
+                        "description": "Genereres"
+                    }
+                }
+            },
+            "MiljoOgDrivstoffGruppe": {
+                "type": "object",
+                "properties": {
+                    "drivstoffKodeMiljodata": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "forbrukOgUtslipp": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ForbrukOgUtslipp"
+                        }
+                    },
+                    "lyd": {
+                        "$ref": "#/components/schemas/Lyd"
+                    }
+                }
+            },
+            "Miljodata": {
+                "type": "object",
+                "properties": {
+                    "co2BesparelsePgaOkoInnovasjon": {
+                        "type": "number",
+                        "description": "CO2 besparelse pga oko innovasjon",
+                        "format": "float"
+                    },
+                    "euroKlasse": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "lyddemperUtblas": {
+                        "type": "string",
+                        "description": "Lyddemper utblas"
+                    },
+                    "miljoOgdrivstoffGruppe": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MiljoOgDrivstoffGruppe"
+                        }
+                    },
+                    "okoInnovasjon": {
+                        "type": "boolean",
+                        "description": "Oko innovasjon pa kjoretoy?"
+                    },
+                    "typeOkoInnovasjon": {
+                        "type": "string",
+                        "description": "Type oko innovasjon"
+                    }
+                }
+            },
+            "Motor": {
+                "type": "object",
+                "properties": {
+                    "antallSylindre": {
+                        "type": "integer",
+                        "description": "E3 - s.3.2.1.2 - Antall sylindre",
+                        "format": "int32"
+                    },
+                    "arbeidsprinsipp": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "avgassResirkulering": {
+                        "type": "boolean",
+                        "description": "E12 - s.3.2.12.2.4 - Avgass resirkulering"
+                    },
+                    "blandingsDrivstoff": {
+                        "type": "string",
+                        "description": "Enkelt/dobbelt eller blandings drivstoff"
+                    },
+                    "drivstoff": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Drivstoff"
+                        }
+                    },
+                    "fabrikant": {
+                        "type": "string",
+                        "description": "Motorfabrikant (MC)"
+                    },
+                    "fordampningsutslippKontrollSystem": {
+                        "type": "boolean",
+                        "description": "E12.1 - s.3.2.12.2.5 - Fordampningsutslipkontroll system"
+                    },
+                    "katalysator": {
+                        "type": "boolean",
+                        "description": "E10 - 3.2.12.2.1 - Katalysator"
+                    },
+                    "kjolesystem": {
+                        "type": "string"
+                    },
+                    "ladeluftkjoler": {
+                        "type": "boolean",
+                        "description": "E9.1 - s.3.2.8.2 - Ladeluftkjoler (intercooler)"
+                    },
+                    "luftInnsproytning": {
+                        "type": "boolean",
+                        "description": "E11 - s.3.2.12.2.3 - Luftinnsproytning"
+                    },
+                    "motorKode": {
+                        "type": "string",
+                        "description": "E1 - s.3.1.1 - Motorkode"
+                    },
+                    "motorNummer": {
+                        "type": "string",
+                        "description": "Motornummer"
+                    },
+                    "oksygenSensor": {
+                        "type": "boolean",
+                        "description": "E10.1 - 3.2.12.2.2 - Oksygen sensor (lambda sonde)"
+                    },
+                    "overladet": {
+                        "type": "boolean",
+                        "description": "E9 - s.3.2.8.1 - Overladet (Turbo, kompressor etc)"
+                    },
+                    "partikkelfilterMotor": {
+                        "type": "boolean",
+                        "description": "E13 - s.3.2.12.2.6 - Partikkelfilter"
+                    },
+                    "slagvolum": {
+                        "type": "integer",
+                        "description": "E5 - s.3.2.1.3 - Slagvolum i kubikkcentimeter",
+                        "format": "int32"
+                    },
+                    "sylinderArrangement": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    }
+                },
+                "description": "E-felter s3"
+            },
+            "MotorOgDrivverk": {
+                "type": "object",
+                "properties": {
+                    "antallGir": {
+                        "type": "integer",
+                        "description": "F2 - s4.6 Antall gir",
+                        "format": "int32"
+                    },
+                    "antallGirBakover": {
+                        "type": "integer",
+                        "description": "Antall gir bakover (Traktor)",
+                        "format": "int32"
+                    },
+                    "effektKraftuttakKW": {
+                        "type": "integer",
+                        "description": "Effekt ved kraftuttak i kW (Traktor)",
+                        "format": "int32"
+                    },
+                    "girPlassering": {
+                        "type": "string",
+                        "description": "Gir plassering (hand/fot MC)"
+                    },
+                    "girkassetype": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "giroverforingsType": {
+                        "type": "string",
+                        "description": "Giroverforingstype (MC)"
+                    },
+                    "girutvekslingPrGir": {
+                        "type": "array",
+                        "description": "Angir utveksling pr. gir. Gear ratio",
+                        "items": {
+                            "$ref": "#/components/schemas/Girutveksling"
+                        }
+                    },
+                    "hybridElektriskKjoretoy": {
+                        "type": "boolean",
+                        "description": "E16 - s.3.4.1 - Hybrid elektrisk kjoretoy"
+                    },
+                    "hybridKategori": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "maksimumHastighet": {
+                        "type": "array",
+                        "description": "F3 - s4.7 Maks hastighet. Oppgis i kilometer pr. time",
+                        "items": {
+                            "type": "integer",
+                            "description": "F3 - s4.7 Maks hastighet. Oppgis i kilometer pr. time",
+                            "format": "int32"
+                        }
+                    },
+                    "maksimumHastighetMalt": {
+                        "type": "array",
+                        "description": "Maks hastighet malt (traktor).",
+                        "items": {
+                            "type": "integer",
+                            "description": "Maks hastighet malt (traktor).",
+                            "format": "int32"
+                        }
+                    },
+                    "motor": {
+                        "type": "array",
+                        "description": "E-felter s3",
+                        "items": {
+                            "$ref": "#/components/schemas/Motor"
+                        }
+                    },
+                    "obd": {
+                        "type": "boolean",
+                        "description": "E14 - s.3.2.12.2.7 - OBD"
+                    },
+                    "totalUtvekslingHoyesteGir": {
+                        "type": "number",
+                        "description": "Total utveksling i hoyeste gir (MC)",
+                        "format": "float"
+                    },
+                    "utelukkendeElektriskDrift": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "NasjonaltGodkjenningsnummer": {
+                "type": "object",
+                "properties": {
+                    "nasjonaltGodkjenningsAr": {
+                        "type": "string"
+                    },
+                    "nasjonaltGodkjenningsHovednummer": {
+                        "type": "string"
+                    },
+                    "nasjonaltGodkjenningsUndernummer": {
+                        "type": "string"
+                    }
+                }
+            },
+            "OppbygdMedAvgiftsfritak": {
+                "type": "object",
+                "properties": {
+                    "arkivreferanse": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "delekjoretoy": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TekniskKjoretoyIdentitet"
+                        }
+                    },
+                    "erstattetKjoretoy": {
+                        "$ref": "#/components/schemas/TekniskKjoretoyIdentitet"
+                    }
+                }
+            },
+            "OvrigeTekniskeData": {
+                "type": "object",
+                "properties": {
+                    "datafeltIndeks": {
+                        "type": "integer",
+                        "description": "Angir rekkefølgen for datafelt",
+                        "format": "int32"
+                    },
+                    "datafeltNavn": {
+                        "type": "string",
+                        "description": "datafeltnavn slik det fremgar i kodeverk for tekniske datafelt"
+                    },
+                    "datafeltVerdi": {
+                        "type": "string",
+                        "description": "Types alltid som string, ingen sterk typing i kontrakt, bruk typing som angitt i kodeverk for tekniske data"
+                    }
+                },
+                "description": "datafelter som ikke er sterkt typet i denne versjonen av kontrakten, typisk nye felt som introduseres mellom versjoner"
+            },
+            "PeriodiskKjoretoyKontroll": {
+                "type": "object",
+                "properties": {
+                    "kontrollfrist": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "sistGodkjent": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "description": "Gjeldende frist og godkjenningstidspunkt uavhengig av dato-tid oppslag. Det betyr at nåværende frist og siste godkjenningstidspunkt alltid returneres i dette feltet, selv om det gjøre oppslag tilbake i tid"
+            },
+            "Person": {
+                "type": "object",
+                "properties": {
+                    "etternavn": {
+                        "type": "string"
+                    },
+                    "fodselsdato": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "fodselsnummer": {
+                        "type": "string"
+                    },
+                    "fornavn": {
+                        "type": "string"
+                    },
+                    "mellomnavn": {
+                        "type": "string"
+                    }
+                },
+                "description": "Personopplysningene er basert på siste tilgjengelige data fra folkeregisteret."
+            },
+            "PersonEnhet": {
+                "type": "object",
+                "properties": {
+                    "adresse": {
+                        "$ref": "#/components/schemas/Adresse"
+                    },
+                    "adressestatus": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "enhet": {
+                        "$ref": "#/components/schemas/Enhet"
+                    },
+                    "erUnntattOffentlighet": {
+                        "type": "boolean"
+                    },
+                    "erUverifisert": {
+                        "type": "boolean",
+                        "description": "Person eller enhet er ikke registrert i Folkeregisteret eller enhetsregisteret og har følgelig ikke en gyldig nøkkel til offentlige registre. Eierskapet kan inneholde utdaterte data eller data knyttet til utenlandske personer eller organisasjoner."
+                    },
+                    "fomTidspunkt": {
+                        "type": "string",
+                        "description": "Tidspunktet for når eierforholdet oppstod.",
+                        "format": "date-time"
+                    },
+                    "kundeId": {
+                        "type": "string",
+                        "description": "Intern identifikator kun ment for bruk innenfor Statens vegvesens portefølje"
+                    },
+                    "person": {
+                        "$ref": "#/components/schemas/Person"
+                    },
+                    "tilTidspunkt": {
+                        "type": "string",
+                        "description": "Tidspunktet for når eierforholdet ble avsluttet. Aktuelt ved oppslag tilbake i tid.",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Persontall": {
+                "type": "object",
+                "properties": {
+                    "bareplasser": {
+                        "type": "integer",
+                        "description": "Antall godkjente bareplasser. Bareplasser skal medregnes i det antall kjoretoyet registreres for",
+                        "format": "int32"
+                    },
+                    "rullestolplasser": {
+                        "type": "integer",
+                        "description": "Antall godkjente rullestolplasser. Rullstolplasser skal medregnes i det antall kjoretoyet registreres for",
+                        "format": "int32"
+                    },
+                    "sitteplassListe": {
+                        "$ref": "#/components/schemas/SitteplassListe"
+                    },
+                    "sitteplasserForan": {
+                        "type": "integer",
+                        "description": "Antall sitteplasser i forste seterad oppgitt av fabrikant",
+                        "format": "int32"
+                    },
+                    "sitteplasserNede": {
+                        "type": "integer",
+                        "description": "Antall sitteplasser i nederste etasje",
+                        "format": "int32"
+                    },
+                    "sitteplasserOppe": {
+                        "type": "integer",
+                        "description": "Antall sitteplasser i overste etasje",
+                        "format": "int32"
+                    },
+                    "sitteplasserStillstand": {
+                        "type": "integer",
+                        "description": "Antall sitteplasser beregnet til bruk ved stillstand",
+                        "format": "int32"
+                    },
+                    "sitteplasserTotalt": {
+                        "type": "integer",
+                        "description": "K3 - s.9.10.3.1 - Antall sitteplasser totalt oppgitt av fabrikant. Kjoretoyet kan dog ikke godkjennes for storre antall personer enn det kjoretoyet har nytte for",
+                        "format": "int32"
+                    },
+                    "sitteplasserTotaltSomVarebilKlasse2": {
+                        "type": "integer",
+                        "description": "Benyttes kun for typegodkjenninger for varebiler",
+                        "format": "int32"
+                    },
+                    "staplasser": {
+                        "type": "integer",
+                        "description": "Antall godkjente staplasser. Kjoretoyet kan dog ikke godkjennes for storre antall personer enn det kjoretoyet har nyttelast for",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Registrering": {
+                "type": "object",
+                "properties": {
+                    "fomTidspunkt": {
+                        "type": "string",
+                        "description": "Tidspunktet for siste registreringshandling.",
+                        "format": "date-time"
+                    },
+                    "kjoringensArt": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "neringskode": {
+                        "type": "string",
+                        "description": "Kode basert på BRREG næringskoder."
+                    },
+                    "neringskodeBeskrivelse": {
+                        "type": "string"
+                    },
+                    "registreringsstatus": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "registrertForstegangPaEierskap": {
+                        "type": "string",
+                        "description": "Feltet er i bruk hvis kjøretøyet er registrert på eier etter siste eierskifte. Hvis feltet ikke er fylt ut, er kjøreøyet ikke registrert på eier etter siste eierskifte.",
+                        "format": "date-time"
+                    },
+                    "tilTidspunkt": {
+                        "type": "string",
+                        "description": "Feltet kan være fylt ut ved oppslag tilbake i tid, og angir isåfall når oppgitt registreringsstatus ble endret.",
+                        "format": "date-time"
+                    },
+                    "vektarsavgiftOppgittGrunnlag": {
+                        "$ref": "#/components/schemas/VektarsavgiftOppgittGrunnlag"
+                    }
+                }
+            },
+            "Registreringsbegrensninger": {
+                "type": "object",
+                "properties": {
+                    "registreringsbegrensning": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/KodeverkType"
+                        }
+                    }
+                }
+            },
+            "Responskode": {
+                "type": "object",
+                "properties": {
+                    "beskrivelse": {
+                        "type": "string"
+                    },
+                    "kode": {
+                        "type": "string"
+                    }
+                },
+                "description": "Felt for å kunne gi funksjonelle feilmeldinger. F.eks hvis uthenting av data fra et annet system feiler."
+            },
+            "Sitteplass": {
+                "type": "object",
+                "properties": {
+                    "beltekraftbegrenser": {
+                        "type": "boolean",
+                        "description": "K7.3 - s.9.12.2 - Beltekraftbegrenser"
+                    },
+                    "beltestrammer": {
+                        "type": "boolean",
+                        "description": "K7 - s.9.12.2 - Kollisjonspute side"
+                    },
+                    "frontairbag": {
+                        "type": "boolean",
+                        "description": "K5 - s.9.12.2 - Kollisjonspute foran"
+                    },
+                    "hodegardinairbag": {
+                        "type": "boolean",
+                        "description": "K7.1 - s.9.12.2 - Hodekollisjons gardin"
+                    },
+                    "kneairbag": {
+                        "type": "boolean",
+                        "description": "K7.2 - s.9.12.2 - Kollisjonspute for knar"
+                    },
+                    "posisjon": {
+                        "type": "string",
+                        "description": "K4 - s.9.10.3.2 - Plassering av sitteplasser (Left - center - right)"
+                    },
+                    "rad": {
+                        "type": "integer",
+                        "description": "K4 - s.9.10.3.2 - Plassering av sitteplasser - Rad",
+                        "format": "int32"
+                    },
+                    "sideairbag": {
+                        "type": "boolean",
+                        "description": "K6 - s.9.12.2 - Kollisjonspute side"
+                    }
+                }
+            },
+            "SitteplassListe": {
+                "type": "object",
+                "properties": {
+                    "sitteplass": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Sitteplass"
+                        }
+                    }
+                },
+                "description": "Her defineres airbags og plassering pa hver enkelt sitteplass"
+            },
+            "TekniskGodkjenning": {
+                "type": "object",
+                "properties": {
+                    "godkjenningsId": {
+                        "type": "string"
+                    },
+                    "godkjenningsundertype": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "gyldigFraDato": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "gyldigFraDatoTid": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "kjoretoyklassifisering": {
+                        "$ref": "#/components/schemas/Kjoretoyklassifisering"
+                    },
+                    "korreksjon": {
+                        "$ref": "#/components/schemas/Korreksjon"
+                    },
+                    "krav": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Krav"
+                        }
+                    },
+                    "tekniskeData": {
+                        "$ref": "#/components/schemas/TekniskeData"
+                    },
+                    "unntak": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Unntak"
+                        }
+                    }
+                },
+                "description": "Henter godkjenning med status Godkjent hvis den er nyere enn siste Aktive godkjenning ellers hentes siste aktive godkjenning"
+            },
+            "TekniskKjoretoyIdentitet": {
+                "type": "object",
+                "properties": {
+                    "kuid": {
+                        "type": "string"
+                    },
+                    "understellsbasertId": {
+                        "$ref": "#/components/schemas/UnderstellsbasertId"
+                    }
+                }
+            },
+            "TekniskeData": {
+                "type": "object",
+                "properties": {
+                    "akslinger": {
+                        "$ref": "#/components/schemas/AkselInfo"
+                    },
+                    "bremser": {
+                        "$ref": "#/components/schemas/Bremse"
+                    },
+                    "dekkOgFelg": {
+                        "$ref": "#/components/schemas/DekkOgFelg"
+                    },
+                    "dimensjoner": {
+                        "$ref": "#/components/schemas/Dimensjoner"
+                    },
+                    "generelt": {
+                        "$ref": "#/components/schemas/Generelt"
+                    },
+                    "karosseriOgLasteplan": {
+                        "$ref": "#/components/schemas/KarosseriOgLasteplan"
+                    },
+                    "miljodata": {
+                        "$ref": "#/components/schemas/Miljodata"
+                    },
+                    "motorOgDrivverk": {
+                        "$ref": "#/components/schemas/MotorOgDrivverk"
+                    },
+                    "ovrigeTekniskeData": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OvrigeTekniskeData"
+                        }
+                    },
+                    "persontall": {
+                        "$ref": "#/components/schemas/Persontall"
+                    },
+                    "tilhengerkopling": {
+                        "$ref": "#/components/schemas/Tilhengerkopling"
+                    },
+                    "vekter": {
+                        "$ref": "#/components/schemas/Vekter"
+                    }
+                }
+            },
+            "Tilhengerkopling": {
+                "type": "object",
+                "properties": {
+                    "kopling": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Kopling"
+                        }
+                    }
+                }
+            },
+            "Tilleggsgodkjenning": {
+                "type": "object",
+                "properties": {
+                    "godkjenningstype": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    },
+                    "godkjentFra": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "godkjentFraDatoTid": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "godkjentTil": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "godkjentTilDatoTid": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "korreksjon": {
+                        "$ref": "#/components/schemas/Korreksjon"
+                    },
+                    "krav": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Krav"
+                        }
+                    },
+                    "tilleggsgodkjenningSpesifikkeData": {
+                        "$ref": "#/components/schemas/TilleggsgodkjenningSpesifikkeData"
+                    }
+                }
+            },
+            "TilleggsgodkjenningSpesifikkeData": {
+                "type": "object",
+                "properties": {
+                    "adrGodkjenning": {
+                        "$ref": "#/components/schemas/AdrGodkjenning"
+                    },
+                    "dyretransportGodkjenning": {
+                        "$ref": "#/components/schemas/DyretransportGodkjenning"
+                    },
+                    "larevognGodkjenning": {
+                        "$ref": "#/components/schemas/LarevognGodkjenning"
+                    }
+                }
+            },
+            "Typegodkjenningsnummer": {
+                "type": "object",
+                "properties": {
+                    "direktiv": {
+                        "type": "string"
+                    },
+                    "land": {
+                        "type": "string"
+                    },
+                    "serie": {
+                        "type": "string"
+                    },
+                    "utvidelse": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UnderstellsbasertId": {
+                "type": "object",
+                "properties": {
+                    "merkekode": {
+                        "type": "string"
+                    },
+                    "understellsnummer": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Unntak": {
+                "type": "object",
+                "properties": {
+                    "merknad": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "unntak": {
+                        "$ref": "#/components/schemas/KodeverkType"
+                    }
+                }
+            },
+            "VektOgBremse": {
+                "type": "object",
+                "properties": {
+                    "bremseType": {
+                        "type": "string"
+                    },
+                    "vogntogvekt": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "description": "s.2.4.4 Vogntogvekt avh. bremsesystem (Traktor)"
+            },
+            "VektarsavgiftOppgittGrunnlag": {
+                "type": "object",
+                "properties": {
+                    "antallAkslerTilhenger": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalvektTilhenger": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Vekter": {
+                "type": "object",
+                "properties": {
+                    "egenvekt": {
+                        "type": "integer",
+                        "description": "Spesifikk egenvekt med forer",
+                        "format": "int32"
+                    },
+                    "egenvektMaksimum": {
+                        "type": "integer",
+                        "description": "D14 - s2.6 - Maksiums egenvekt for kjoretoyet med forer",
+                        "format": "int32"
+                    },
+                    "egenvektMinimum": {
+                        "type": "integer",
+                        "description": "D13 - s2.6 - Minimums egenvekt for kjoretoyet med forer",
+                        "format": "int32"
+                    },
+                    "egenvektTilhengerkopling": {
+                        "type": "integer",
+                        "description": "Egenvekt for kopling nar tilhenger er tom",
+                        "format": "int32"
+                    },
+                    "frontOgHjulVekter": {
+                        "type": "string",
+                        "description": "2.3 Front og hjulvekter (Traktor: Totalvekt,matr, antall)"
+                    },
+                    "nyttelast": {
+                        "type": "integer",
+                        "description": "Differanse mellom totalvekt og egenvekt (med/uten forer)",
+                        "format": "int32"
+                    },
+                    "tekniskTillattForhoyetTotalvekt": {
+                        "type": "integer",
+                        "description": "D15.1 s.2.8 Teknisk tillatt forhoyet totalvekt (maks)",
+                        "format": "int32"
+                    },
+                    "tekniskTillattTotalvekt": {
+                        "type": "integer",
+                        "description": "Fabrikantens angitte maksimale totalvekt når kjøretøy er gitt lavere tilllatt totalvekt",
+                        "format": "int32"
+                    },
+                    "tekniskTillattTotalvektVeg": {
+                        "type": "integer",
+                        "description": "Teknisk tillatt totalvekt tillatt pa veg",
+                        "format": "int32"
+                    },
+                    "tekniskTillattVektPahengsvogn": {
+                        "type": "integer",
+                        "description": "s.2.4.2 Teknisk tillatt vekt for pahengsvogn",
+                        "format": "int32"
+                    },
+                    "tekniskTillattVektSemitilhenger": {
+                        "type": "integer",
+                        "description": "s.2.4.2 Teknisk tillatt vekt for semitilhenger",
+                        "format": "int32"
+                    },
+                    "tillattHjulLastSidevogn": {
+                        "type": "integer",
+                        "description": "Tillatt hjullast for sidevogn, oppgis i kg",
+                        "format": "int32"
+                    },
+                    "tillattTaklast": {
+                        "type": "integer",
+                        "description": "D20 - s2.8.2 Tillatt taklast (maks)",
+                        "format": "int32"
+                    },
+                    "tillattTilhengervektMedBrems": {
+                        "type": "integer",
+                        "description": "D27 - s2.11.6 Teknisk tillatt vekt for tilhenger med brems",
+                        "format": "int32"
+                    },
+                    "tillattTilhengervektUtenBrems": {
+                        "type": "integer",
+                        "description": "D27 - s2.11.6 Teknisk tillatt vekt for tilhenger uten brems",
+                        "format": "int32"
+                    },
+                    "tillattTotalvekt": {
+                        "type": "integer",
+                        "description": "D15 - s2.8 Teknisk tillatt totalvekt (maks).",
+                        "format": "int32"
+                    },
+                    "tillattVektSlepevogn": {
+                        "type": "integer",
+                        "description": "s.2.4.1 Tillatt vekt for slepevogn m trekkstang",
+                        "format": "int32"
+                    },
+                    "tillattVertikalKoplingslast": {
+                        "type": "integer",
+                        "description": "D28 - s2.12.1 Tillatt vertikal koplingslast",
+                        "format": "int32"
+                    },
+                    "tillattVogntogvekt": {
+                        "type": "integer",
+                        "description": "D26 - s2.11.4 Vogntogvekt",
+                        "format": "int32"
+                    },
+                    "tillattVogntogvektVeg": {
+                        "type": "integer",
+                        "description": "Tillatt Vogntogvekt pa veg",
+                        "format": "int32"
+                    },
+                    "vogntogvektAvhBremsesystem": {
+                        "type": "array",
+                        "description": "s.2.4.4 Vogntogvekt avh. bremsesystem (Traktor)",
+                        "items": {
+                            "$ref": "#/components/schemas/VektOgBremse"
+                        }
+                    }
+                }
+            },
+            "WLTP": {
+                "type": "object",
+                "properties": {
+                    "co2EkstraHoy": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "co2Hoy": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "co2Kombinert": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "co2Lav": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "co2Middels": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "co2VektetKombinert": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "forbrukEkstraHoy": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "forbrukHoy": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "forbrukKombinert": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "forbrukLav": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "forbrukMiddels": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "forbrukVektetKombinert": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "rekkeviddeKmBlandetkjoring": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "rekkeviddeKmBykjoring": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Kunde": {
+                "type": "object",
+                "properties": {
+                    "personEnhet": {
+                        "$ref": "#/components/schemas/PersonEnhet"
+                    },
+                    "antallKjoretoy": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "KundeSokResponse": {
+                "type": "object",
+                "properties": {
+                    "antallITreffliste": {
+                        "type": "integer",
+                        "description": "Antall personEnhet elementer returnert i trefflisten",
+                        "format": "int32"
+                    },
+                    "antallTreffTotalt": {
+                        "type": "integer",
+                        "description": "Spesifisert søk gir antall treff i registeret",
+                        "format": "int32"
+                    },
+                    "treffListe": {
+                        "type": "array",
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/Kunde"
+                        }
+                    },
+                    "responskoder": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Responskode"
+                        }
+                    },
+                    "kunder": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Kunde"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
