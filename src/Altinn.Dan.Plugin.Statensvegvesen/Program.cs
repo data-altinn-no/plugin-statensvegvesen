@@ -1,8 +1,6 @@
 using System;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Altinn.Dan.Plugin.Statensvegvesen.Clients;
 using Altinn.Dan.Plugin.Statensvegvesen.Config;
@@ -11,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Polly;
 using Polly.Caching.Distributed;
 using Polly.Extensions.Http;
@@ -54,12 +54,11 @@ internal class Program
                         Convert.ToBase64String(Encoding.ASCII.GetBytes($"{ApplicationSettings.SvvUsername}:{ApplicationSettings.SvvPassword}")));
                 }).AddPolicyHandlerFromRegistry("defaultCircuitBreaker");
 
-                services.Configure<JsonSerializerOptions>(options =>
+                JsonConvert.DefaultSettings = () => new JsonSerializerSettings
                 {
-                    options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-                    options.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-                    options.Converters.Add(new JsonStringEnumConverter());
-                });
+                    DefaultValueHandling = DefaultValueHandling.Ignore,
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                };
             })
             .Build();
 

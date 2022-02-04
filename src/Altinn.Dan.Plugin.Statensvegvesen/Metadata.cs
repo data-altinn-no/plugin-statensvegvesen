@@ -4,6 +4,7 @@ using Nadobe.Common.Interfaces;
 using Nadobe.Common.Models;
 using Nadobe.Common.Models.Enums;
 using Newtonsoft.Json;
+using NJsonSchema;
 
 namespace Altinn.Dan.Plugin.Statensvegvesen;
 
@@ -32,7 +33,7 @@ public class Metadata : IEvidenceSourceMetadata
                     {
                         EvidenceValueName = "default",
                         ValueType = EvidenceValueType.JsonSchema,
-                        JsonSchemaDefintion = JsonConvert.SerializeObject(new SvvResponse())
+                        JsonSchemaDefintion = JsonSchema.FromType<SvvResponse>().ToJson(Formatting.Indented)
                     }
                 },
                 AuthorizationRequirements = new List<Requirement>

@@ -28,9 +28,9 @@ public partial class Svv
                     Model = technicalApproval.TekniskeData?.Generelt?.Handelsbetegnelse?.First(),
                     Owner = GetNameOfOwner(kjoretoyResponse),
                     CoOwner = GetNameOfCoOwner(kjoretoyResponse),
-                    DeadlineEUApproval = kjoretoyResponse.Kjoretoy?.PeriodiskKjoretoyKontroll?.Kontrollfrist.DateTime,
-                    LatestEUApproval = kjoretoyResponse.Kjoretoy?.PeriodiskKjoretoyKontroll?.SistGodkjent.DateTime,
-                    RegistrationDate = kjoretoyResponse.Kjoretoy?.Forstegangsregistrering?.RegistrertForstegangNorgeDato.DateTime,
+                    DeadlineEUApproval = kjoretoyResponse.Kjoretoy?.PeriodiskKjoretoyKontroll?.Kontrollfrist?.DateTime,
+                    LatestEUApproval = kjoretoyResponse.Kjoretoy?.PeriodiskKjoretoyKontroll?.SistGodkjent?.DateTime,
+                    RegistrationDate = kjoretoyResponse.Kjoretoy?.Forstegangsregistrering?.RegistrertForstegangNorgeDato?.DateTime,
                     Status = kjoretoyResponse.Kjoretoy?.Registrering?.Registreringsstatus?.KodeVerdi
                 });
             }
