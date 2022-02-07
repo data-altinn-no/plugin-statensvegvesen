@@ -39,7 +39,7 @@
   <ItemGroup>
     <OpenApiReference Include="OpenAPIs\Svv.json" CodeGenerator="NSwagCSharp" Namespace="Altinn.Dan.Plugin.Statensvegvesen.Clients" ClassName="Svv">
       <SourceUri>https://vegvesen.github.io/ak-api/filer/api/api_kjoretoysok_46.json</SourceUri>
-      <Options>/UseBaseUrl:false /GenerateOptionalPropertiesAsNullable:true</Options>
+      <Options>/GenerateOptionalPropertiesAsNullable:true /GenerateClientClasses:false /GenerateExceptionClasses:false</Options>
     </OpenApiReference>
   </ItemGroup>
 </Project>

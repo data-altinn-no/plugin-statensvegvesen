@@ -18,12 +18,12 @@ namespace Altinn.Dan.Plugin.Statensvegvesen;
 
 public class Main
 {
-    private readonly Svv _svv;
     private ILogger _logger;
+    private readonly SvvClient _svvClient;
 
-    public Main(Svv svv)
+    public Main(SvvClient svvClient)
     {
-        _svv = svv;
+        _svvClient = svvClient;
     }
 
     [Function("Kjoretoy")]
@@ -45,7 +45,7 @@ public class Main
 
     private async Task<List<EvidenceValue>> GetEvidenceValuesKjoretoy(EvidenceHarvesterRequest evidenceHarvesterRequest)
     {
-        var svvResponse = await _svv.Get(OedUtils.MapSsn(evidenceHarvesterRequest.OrganizationNumber, "svv"));
+        var svvResponse = OedUtils.MapToInternal(await _svvClient.SokKjoretoyForFodselsnummer(evidenceHarvesterRequest.OrganizationNumber));
 
         var ecb = new EvidenceBuilder(new Metadata(), "Kjoretoy");
         ecb.AddEvidenceValue("default", JsonConvert.SerializeObject(svvResponse), Metadata.SOURCE);

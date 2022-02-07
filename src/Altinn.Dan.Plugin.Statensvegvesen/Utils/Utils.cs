@@ -1,74 +1,66 @@
-using System;
+using System.Collections.Generic;
+using System.Linq;
+using Altinn.Dan.Plugin.Statensvegvesen.Clients;
+using Altinn.Dan.Plugin.Statensvegvesen.Models;
 
-namespace Altinn.Dan.Plugin.Statensvegvesen.Utils;
-
-public static class OedUtils
+namespace Altinn.Dan.Plugin.Statensvegvesen.Utils
 {
-    public static string MapSsn(string ssn, string externalSource)
+    public static class OedUtils
     {
-        // todo Make this table driven and more maintainable when we have more interfaces and test users
-        // todo Differntiate between different test enviroments. Prod should allways return the input without modification.
-        if (externalSource == "svv")
-            switch (ssn)
-            {
-                case "12113701569":
-                case "02056600860":
-                case "04103300113":
-                case "11093600373":
-                case "10045800887":
-                    return ssn;
-                default: return "07047901388";
-            }
+        public static SvvResponse MapToInternal(KjoretoysokResponse externalResponse)
+        {
+            var internalResponse = new SvvResponse { Vehicles = new List<Vehicle>() };
+            if (externalResponse != null)
+                foreach (var kjoretoyResponse in externalResponse?.Kjoretoyresponser)
+                {
+                    var technicalApproval = kjoretoyResponse.Kjoretoy?.Godkjenning?.TekniskGodkjenning;
+                    internalResponse.Vehicles.Add(new Vehicle
+                    {
+                        RegNr = kjoretoyResponse.Kjoretoy?.KjoretoyId?.Kjennemerke,
+                        Brand = technicalApproval.TekniskeData?.Generelt?.Merke?.First().Merke1,
+                        GroupName = technicalApproval.Kjoretoyklassifisering?.TekniskKode?.KodeNavn,
+                        GroupValue = technicalApproval.Kjoretoyklassifisering?.TekniskKode?.KodeVerdi,
+                        Model = technicalApproval.TekniskeData?.Generelt?.Handelsbetegnelse?.First(),
+                        Owner = GetNameOfOwner(kjoretoyResponse),
+                        CoOwner = GetNameOfCoOwner(kjoretoyResponse),
+                        DeadlineEUApproval = kjoretoyResponse.Kjoretoy?.PeriodiskKjoretoyKontroll?.Kontrollfrist?.DateTime,
+                        LatestEUApproval = kjoretoyResponse.Kjoretoy?.PeriodiskKjoretoyKontroll?.SistGodkjent?.DateTime,
+                        RegistrationDate = kjoretoyResponse.Kjoretoy?.Forstegangsregistrering?.RegistrertForstegangNorgeDato?.DateTime,
+                        Status = kjoretoyResponse.Kjoretoy?.Registrering?.Registreringsstatus?.KodeVerdi
+                    });
+                }
 
-        if (externalSource == "kartverket")
-            switch (ssn)
-            {
-                case "12113701569":
-                case "02056600860":
-                case "04103300113":
-                case "11093600373":
-                case "10045800887":
-                    return ssn;
-                case "23076102252": return "02056600860";
-                default: return "12113701569";
-            }
+            return internalResponse;
+        }
 
-        if (externalSource == "norskpensjon")
-            switch (ssn)
-            {
-                case "12113701569":
-                case "02056600860":
-                case "04103300113":
-                case "11093600373":
-                case "10045800887":
-                    return ssn;
-                default: return "11093600373";
-            }
+        private static string GetNameOfCoOwner(KjoretoyResponse kjoretoyResponse)
+        {
+            if (kjoretoyResponse.Kjoretoy?.Eierskap?.Medeier == null) return string.Empty;
 
-        if (externalSource.StartsWith("skatt", StringComparison.OrdinalIgnoreCase))
-            switch (ssn)
-            {
-                default: return "07078600378";
-            }
+            var firstnameOfCoOwner = kjoretoyResponse.Kjoretoy?.Eierskap?.Medeier?.Person?.Fornavn;
+            var lastnameOfCoOwner = kjoretoyResponse.Kjoretoy?.Eierskap?.Medeier?.Person?.Etternavn;
 
-        if (externalSource == "bank" || externalSource == "kar")
-            switch (ssn)
-            {
-                case "12113701569":
-                case "02056600860":
-                case "04103300113":
-                case "11093600373":
-                case "10045800887":
-                    return ssn;
-                default: return "07056120453";
-            }
+            return FormatName(firstnameOfCoOwner, lastnameOfCoOwner);
+        }
 
-        if (externalSource == "ektepaktLosore")
-            switch (ssn)
-            {
-                default: return "01025901750";
-            }
+        private static string GetNameOfOwner(KjoretoyResponse kjoretoyResponse)
+        {
+            var firstnameOfOwner = kjoretoyResponse.Kjoretoy?.Eierskap?.Eier?.Person?.Fornavn;
+            var lastnameOfOwner = kjoretoyResponse.Kjoretoy?.Eierskap?.Eier?.Person?.Etternavn;
 
-        return ssn;
+            return FormatName(firstnameOfOwner, lastnameOfOwner);
+        }
+
+        private static string FormatName(string firstName, string lastName)
+        {
+            if (string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName)) return lastName;
+
+            if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName)) return string.Empty;
+
+            if (!string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName)) return firstName;
+
+            return $"{firstName} {lastName}";
+        }
     }
+
 }

@@ -46,7 +46,7 @@ internal class Program
                 };
                 services.AddPolicyRegistry(registry);
 
-                services.AddHttpClient<Svv>((provider, client) =>
+                services.AddHttpClient<SvvClient>((provider, client) =>
                 {
                     client.Timeout = new TimeSpan(0, 0, 30);
                     client.BaseAddress = new Uri(ApplicationSettings.SvvUrl);

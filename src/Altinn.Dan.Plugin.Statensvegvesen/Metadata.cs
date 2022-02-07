@@ -12,10 +12,11 @@ public class Metadata : IEvidenceSourceMetadata
 {
     public const string SOURCE = "Svv";
 
-    public const int ERROR_ORGANIZATION_NOT_FOUND = 1;
+    public const int ERROR_NO_VEHICLES_FOUND = 1;
 
-    public static int ERROR_CCR_UPSTREAM_ERROR = 2;
+    public const int ERROR_CCR_UPSTREAM_ERROR = 2;
 
+    public const int ERROR_BAD_REQUEST = 3;
 
     public List<EvidenceCode> GetEvidenceCodes()
     {
