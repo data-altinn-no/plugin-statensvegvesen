@@ -21,16 +21,17 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
         /// <returns>Søk gjennomført, responsen inneholder eventuelle treff og/eller responskoder</returns>
         public async Task<KjoretoysokResponse> SokKjoretoyForFodselsnummer(string fodselsnummer)
         {
-            if (fodselsnummer == null)
+            if (string.IsNullOrEmpty(fodselsnummer))
             {
-                throw new ArgumentNullException(nameof(fodselsnummer));
+                throw new EvidenceSourcePermanentClientException(Metadata.ERROR_BAD_REQUEST, $"Bad request (argument cannot be empty)");
             }
 
-            var urlBuilder = new StringBuilder();
-            urlBuilder.Append("?fodselsnummer=").Append(Uri.EscapeDataString(fodselsnummer));
-            var response = await _httpClient.GetAsync(urlBuilder.ToString());
+            HttpResponseMessage response = null;
             try
             {
+                var urlBuilder = new StringBuilder();
+                urlBuilder.Append("?fodselsnummer=").Append(Uri.EscapeDataString(fodselsnummer));
+                response = await _httpClient.GetAsync(urlBuilder.ToString());
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.OK:
@@ -59,7 +60,7 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
             }
             finally
             {
-                response.Dispose();
+                response?.Dispose();
             }
         }
     }
