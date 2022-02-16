@@ -1,0 +1,1188 @@
+{
+    "responskoder": [],
+    "antallITreffliste": 2,
+    "antallTreffTotalt": 2,
+    "kjoretoyresponser": [
+        {
+            "kjoretoy": {
+                "kjoretoyId": {
+                    "imid": "4628",
+                    "kjennemerke": "CU 10942",
+                    "kjoretoyErKryssbyttet": false,
+                    "kryssbytter": [],
+                    "kuid": "3378119709",
+                    "merkekode": "4011",
+                    "understellsnummer": "TESTDIGDIR0000016",
+                    "unntattOffentlighet": []
+                },
+                "forstegangsregistrering": {
+                    "registrertForstegangNorgeDato": "2021-04-21"
+                },
+                "eierskap": {
+                    "eier": {
+                        "adresse": {
+                            "adresselinje1": "ETTERSTAD",
+                            "kommunenavn": "OSLO",
+                            "kommunenummer": "0301",
+                            "land": "NORGE",
+                            "landkode": "NOR",
+                            "postnummer": "0603",
+                            "poststed": "OSLO"
+                        },
+                        "adressestatus": {
+                            "kodeVerdi": "SVALBARD",
+                            "tidligereKodeVerdi": []
+                        },
+                        "erUverifisert": false,
+                        "fomTidspunkt": "2021-04-21T14:32:54.295+02:00",
+                        "kundeId": "124000639",
+                        "person": {
+                            "etternavn": "KROKEN",
+                            "fodselsdato": "1977-03-01",
+                            "fornavn": "HELGE"
+                        }
+                    },
+                    "medeier": {
+                        "adresse": {
+                            "adresselinje1": "TESTGATA 11",
+                            "kommunenavn": "OSLO",
+                            "kommunenummer": "0301",
+                            "land": "NORGE",
+                            "landkode": "NOR",
+                            "postnummer": "0603",
+                            "poststed": "OSLO"
+                        },
+                        "adressestatus": {
+                            "kodeVerdi": "VANLIG_BOSATT",
+                            "tidligereKodeVerdi": []
+                        },
+                        "erUverifisert": false,
+                        "fomTidspunkt": "2021-04-21T14:32:54.295+02:00",
+                        "kundeId": "124000807",
+                        "person": {
+                            "etternavn": "BERGER",
+                            "fodselsdato": "1936-09-11",
+                            "fornavn": "JARLE"
+                        }
+                    },
+                    "vedtakstidspunkt": "2021-04-21T14:32:54.347+02:00"
+                },
+                "kjennemerke": [
+                    {
+                        "fomTidspunkt": "2021-04-21T14:32:54.295+02:00",
+                        "kjennemerke": "CU 10942",
+                        "kjennemerkekategori": "KJORETOY",
+                        "kjennemerketype": {
+                            "kodeBeskrivelse": "Sorte tegn på hvit bunn",
+                            "kodeNavn": "Ordinære kjennemerker",
+                            "kodeVerdi": "ORDINART",
+                            "tidligereKodeVerdi": []
+                        }
+                    }
+                ],
+                "registrering": {
+                    "fomTidspunkt": "2021-04-21T14:32:54.295+02:00",
+                    "registreringsstatus": {
+                        "kodeBeskrivelse": "Registrert",
+                        "kodeVerdi": "REGISTRERT",
+                        "tidligereKodeVerdi": []
+                    },
+                    "registrertForstegangPaEierskap": "2021-04-21T14:32:54.295+02:00"
+                },
+                "godkjenning": {
+                    "forstegangsGodkjenning": {
+                        "forstegangRegistrertDato": "2021-04-21",
+                        "fortollingOgMva": {
+                            "beskrivelse": "Utfyllende beskrivelse",
+                            "fortollingsreferanse": "3388626368722482",
+                            "linje": 1
+                        },
+                        "godkjenningsId": "4999926",
+                        "godkjenningsundertype": {
+                            "kodeNavn": "COC",
+                            "kodeVerdi": "COC",
+                            "tidligereKodeVerdi": []
+                        },
+                        "unntak": []
+                    },
+                    "kjoretoymerknad": [
+                        {
+                            "merknad": "Egenvekt og nyttelast er veiledende - avhengig av utstyr X",
+                            "merknadtypeKode": "TYPEGODKJENNINGSMERKNAD"
+                        }
+                    ],
+                    "registreringsbegrensninger": {
+                        "registreringsbegrensning": []
+                    },
+                    "tekniskGodkjenning": {
+                        "godkjenningsId": "4999926",
+                        "godkjenningsundertype": {
+                            "kodeNavn": "COC",
+                            "kodeVerdi": "COC",
+                            "tidligereKodeVerdi": []
+                        },
+                        "gyldigFraDato": "2021-04-21",
+                        "gyldigFraDatoTid": "2021-04-21T14:02:32+02:00",
+                        "kjoretoyklassifisering": {
+                            "beskrivelse": "Personbil",
+                            "efTypegodkjenning": {
+                                "typegodkjenningNrTekst": "e1*2001/116*0406*27",
+                                "typegodkjenningnummer": {
+                                    "direktiv": "2001/116",
+                                    "land": "e1",
+                                    "serie": "0406",
+                                    "utvidelse": "27"
+                                },
+                                "variant": "GGP21",
+                                "versjon": "ATABRRA5AAAA"
+                            },
+                            "kjoretoyAvgiftsKode": {
+                                "kodeBeskrivelse": "Personbil, unntatt ambulanse",
+                                "kodeNavn": "Personbil",
+                                "kodeVerdi": "101",
+                                "tidligereKodeVerdi": []
+                            },
+                            "nasjonalGodkjenning": {
+                                "nasjonaltGodkjenningsAr": "2016",
+                                "nasjonaltGodkjenningsHovednummer": "6221",
+                                "nasjonaltGodkjenningsUndernummer": "043"
+                            },
+                            "spesielleKjennetegn": "",
+                            "tekniskKode": {
+                                "kodeBeskrivelse": "Bil for persontransport med høyst 8 sitteplasser i tillegg til førersetet (Personbil)",
+                                "kodeNavn": "Personbil",
+                                "kodeVerdi": "M1",
+                                "tidligereKodeVerdi": []
+                            },
+                            "tekniskUnderkode": {
+                                "kodeVerdi": "INGENKODE",
+                                "tidligereKodeVerdi": []
+                            },
+                            "iSamsvarMedTypegodkjenning": true
+                        },
+                        "krav": [],
+                        "tekniskeData": {
+                            "akslinger": {
+                                "akselGruppe": [
+                                    {
+                                        "akselListe": {
+                                            "aksel": [
+                                                {
+                                                    "antallHjul": 2,
+                                                    "drivAksel": true,
+                                                    "fordelingAvTillattTotalvektAkselMaks": 1160,
+                                                    "fordelingAvTillattTotalvektAkselMin": 1115,
+                                                    "id": 1,
+                                                    "maksimalSporvidde": 1540,
+                                                    "minAvstandTilNesteAksling": 2670,
+                                                    "minimalSporvidde": 1540,
+                                                    "plasseringAksel": "1",
+                                                    "styreAksel": true,
+                                                    "tekniskTillattAkselLast": 1160
+                                                }
+                                            ]
+                                        },
+                                        "fordelingAvTillattTotalvektAkselGruppeMaks": 1160,
+                                        "fordelingAvTillattTotalvektAkselGruppeMin": 1115,
+                                        "id": 1,
+                                        "plasseringAkselGruppe": "1",
+                                        "tekniskTillattAkselGruppeLast": 1160
+                                    },
+                                    {
+                                        "akselListe": {
+                                            "aksel": [
+                                                {
+                                                    "antallHjul": 2,
+                                                    "drivAksel": true,
+                                                    "fordelingAvTillattTotalvektAkselMaks": 1255,
+                                                    "fordelingAvTillattTotalvektAkselMin": 1210,
+                                                    "id": 2,
+                                                    "maksimalSporvidde": 1540,
+                                                    "minimalSporvidde": 1540,
+                                                    "plasseringAksel": "2",
+                                                    "styreAksel": false,
+                                                    "tekniskTillattAkselLast": 1255,
+                                                    "tekniskTillattAkselLastForhoyet": 1365
+                                                }
+                                            ]
+                                        },
+                                        "fordelingAvTillattTotalvektAkselGruppeMaks": 1255,
+                                        "fordelingAvTillattTotalvektAkselGruppeMin": 1210,
+                                        "id": 2,
+                                        "plasseringAkselGruppe": "2",
+                                        "tekniskTillattAkselGruppeLast": 1255
+                                    }
+                                ],
+                                "antallAksler": 2
+                            },
+                            "bremser": {
+                                "abs": true,
+                                "tilhengerBremseforbindelse": []
+                            },
+                            "dekkOgFelg": {
+                                "akselDekkOgFelgKombinasjon": [
+                                    {
+                                        "akselDekkOgFelg": [
+                                            {
+                                                "akselId": 1,
+                                                "belastningskodeDekk": "97",
+                                                "dekkdimensjon": "225/55R18",
+                                                "felgdimensjon": "18X7J",
+                                                "hastighetskodeDekk": "H",
+                                                "innpress": "38",
+                                                "tvilling": false
+                                            },
+                                            {
+                                                "akselId": 2,
+                                                "belastningskodeDekk": "97",
+                                                "dekkdimensjon": "225/55R18",
+                                                "felgdimensjon": "18X7J",
+                                                "hastighetskodeDekk": "H",
+                                                "innpress": "38",
+                                                "tvilling": false
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "akselDekkOgFelg": [
+                                            {
+                                                "akselId": 1,
+                                                "belastningskodeDekk": "98",
+                                                "dekkdimensjon": "225/55R18",
+                                                "felgdimensjon": "18X7J",
+                                                "hastighetskodeDekk": "H",
+                                                "innpress": "38",
+                                                "tvilling": false
+                                            },
+                                            {
+                                                "akselId": 2,
+                                                "belastningskodeDekk": "98",
+                                                "dekkdimensjon": "225/55R18",
+                                                "felgdimensjon": "18X7J",
+                                                "hastighetskodeDekk": "H",
+                                                "innpress": "38",
+                                                "tvilling": false
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "akselDekkOgFelg": [
+                                            {
+                                                "akselId": 1,
+                                                "belastningskodeDekk": "100",
+                                                "dekkdimensjon": "215/70R16",
+                                                "felgdimensjon": "16X61/2J",
+                                                "hastighetskodeDekk": "H",
+                                                "innpress": "38",
+                                                "tvilling": false
+                                            },
+                                            {
+                                                "akselId": 2,
+                                                "belastningskodeDekk": "100",
+                                                "dekkdimensjon": "215/70R16",
+                                                "felgdimensjon": "16X61/2J",
+                                                "hastighetskodeDekk": "H",
+                                                "innpress": "38",
+                                                "tvilling": false
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "akselDekkOgFelg": [
+                                            {
+                                                "akselId": 1,
+                                                "belastningskodeDekk": "100",
+                                                "dekkdimensjon": "215/70R16",
+                                                "felgdimensjon": "16X61/2JJ",
+                                                "hastighetskodeDekk": "H",
+                                                "innpress": "38",
+                                                "tvilling": false
+                                            },
+                                            {
+                                                "akselId": 2,
+                                                "belastningskodeDekk": "100",
+                                                "dekkdimensjon": "215/70R16",
+                                                "felgdimensjon": "16X61/2JJ",
+                                                "hastighetskodeDekk": "H",
+                                                "innpress": "38",
+                                                "tvilling": false
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "dekkOgFelgSidevogn": {}
+                            },
+                            "dimensjoner": {
+                                "bredde": 1800,
+                                "hoyde": 1703,
+                                "lengde": 4695
+                            },
+                            "generelt": {
+                                "fabrikant": [
+                                    {
+                                        "fabrikantNavn": "MITSUBISHI MOTORS CORPORATION"
+                                    }
+                                ],
+                                "handelsbetegnelse": [
+                                    "Mitsubishi Outlander"
+                                ],
+                                "merke": [
+                                    {
+                                        "merke": "MITSUBISHI",
+                                        "merkeKode": "4011"
+                                    }
+                                ],
+                                "tekniskKode": {
+                                    "kodeBeskrivelse": "Bil for persontransport med høyst 8 sitteplasser i tillegg til førersetet (Personbil)",
+                                    "kodeNavn": "Personbil",
+                                    "kodeVerdi": "M1",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "typebetegnelse": "CW0"
+                            },
+                            "karosseriOgLasteplan": {
+                                "antallDorer": [
+                                    4
+                                ],
+                                "dorUtforming": [],
+                                "karosseritype": {
+                                    "kodeBeskrivelse": "Stasjonsvogn ISO-standard 3833:1977, def. nr. 3.1.1.4",
+                                    "kodeNavn": "Stasjonsvogn (AC)",
+                                    "kodeTypeId": "TEKNISKEDATA.KAROSSERITYPE",
+                                    "kodeVerdi": "AC",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "kjennemerketypeBak": {
+                                    "kodeBeskrivelse": "Stort smalt",
+                                    "kodeNavn": "Stort smalt",
+                                    "kodeTypeId": "TEKNISKEDATA.KJENNEMERKESTORRELSE",
+                                    "kodeVerdi": "SS",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "kjennemerkestorrelseBak": {
+                                    "kodeBeskrivelse": "Stort smalt",
+                                    "kodeNavn": "Stort smalt",
+                                    "kodeTypeId": "TEKNISKEDATA.KJENNEMERKESTORRELSE",
+                                    "kodeVerdi": "SS",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "kjennemerketypeForan": {
+                                    "kodeBeskrivelse": "Stort smalt",
+                                    "kodeNavn": "Stort smalt",
+                                    "kodeTypeId": "TEKNISKEDATA.KJENNEMERKESTORRELSE",
+                                    "kodeVerdi": "SS",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "kjennemerkestorrelseForan": {
+                                    "kodeBeskrivelse": "Stort smalt",
+                                    "kodeNavn": "Stort smalt",
+                                    "kodeTypeId": "TEKNISKEDATA.KJENNEMERKESTORRELSE",
+                                    "kodeVerdi": "SS",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "oppbygningUnderstellsnummer": "?????????????????",
+                                "plasseringAvDorer": {
+                                    "kodeBeskrivelse": "4 sidedører",
+                                    "kodeNavn": "4 sidedører",
+                                    "kodeTypeId": "TEKNISKEDATA.PLASSERINGDORER",
+                                    "kodeVerdi": "4_SIDE",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "plasseringFabrikasjonsplate": [
+                                    {
+                                        "kodeBeskrivelse": "Kupé - høyre døråpning",
+                                        "kodeNavn": "Kupé - høyre døråpning",
+                                        "kodeTypeId": "TEKNISKEDATA.PLASSERINGMERKING",
+                                        "kodeVerdi": "KUPE_HOYRE_DORAPNING",
+                                        "tidligereKodeVerdi": []
+                                    }
+                                ],
+                                "plasseringUnderstellsnummer": [
+                                    {
+                                        "kodeBeskrivelse": "Motorrom - Bak",
+                                        "kodeNavn": "Motorrom - bak",
+                                        "kodeTypeId": "TEKNISKEDATA.PLASSERINGMERKING",
+                                        "kodeVerdi": "MOTORROM_BAK",
+                                        "tidligereKodeVerdi": []
+                                    }
+                                ],
+                                "rFarge": [
+                                    {
+                                        "kodeBeskrivelse": "herunder: Blåsvart, grafitt mørk, gråsort, koksgrå mørk, koksgrå mørk metallic",
+                                        "kodeNavn": "Svart",
+                                        "kodeTypeId": "TEKNISKEDATA.KAROSSERIFARGE",
+                                        "kodeVerdi": "06",
+                                        "tidligereKodeVerdi": []
+                                    }
+                                ]
+                            },
+                            "miljodata": {
+                                "euroKlasse": {
+                                    "kodeBeskrivelse": "Euro 6L - EF 715/2007*EF 459/2012 (med bokstavene N til ZC)",
+                                    "kodeNavn": "Euro 6L - EF 715/2007*EF 459/2012 (med bokstavene N til ZC)",
+                                    "kodeTypeId": "TEKNISKEDATA.AVGASSKODE",
+                                    "kodeVerdi": "6L",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "miljoOgdrivstoffGruppe": [
+                                    {
+                                        "drivstoffKodeMiljodata": {
+                                            "kodeBeskrivelse": "Bensin",
+                                            "kodeNavn": "Bensin",
+                                            "kodeTypeId": "TEKNISKEDATA.DRIVSTOFFTYPE",
+                                            "kodeVerdi": "1",
+                                            "tidligereKodeVerdi": []
+                                        },
+                                        "forbrukOgUtslipp": [
+                                            {
+                                                "malemetode": {
+                                                    "kodeBeskrivelse": "NEDC (Lette kjøretøy)",
+                                                    "kodeNavn": "MALEMETODETYPE_NEDC",
+                                                    "kodeTypeId": "MALEMETODETYPE",
+                                                    "kodeVerdi": "NEDC",
+                                                    "tidligereKodeVerdi": []
+                                                },
+                                                "utslippCOmgPrKm": 240.6,
+                                                "utslippNMHCmgPrKm": 11.8,
+                                                "utslippNOxMgPrKm": 3.3,
+                                                "utslippTHCmgPrKm": 13.4,
+                                                "vektetKombinertDrivstoff": 1.7,
+                                                "vektetKombinertDrivstoffCO2": 41
+                                            }
+                                        ],
+                                        "lyd": {
+                                            "kjorestoy": 71,
+                                            "standstoy": 75,
+                                            "stoyMalingOppgittAv": {
+                                                "kodeBeskrivelse": "Produsent",
+                                                "kodeNavn": "Produsent",
+                                                "kodeTypeId": "TEKNISKEDATA.KILDE_STOYMALING",
+                                                "kodeVerdi": "1",
+                                                "tidligereKodeVerdi": []
+                                            },
+                                            "vedAntallOmdreininger": 3375
+                                        }
+                                    },
+                                    {
+                                        "drivstoffKodeMiljodata": {
+                                            "kodeBeskrivelse": "Elektrisk",
+                                            "kodeNavn": "Elektrisk",
+                                            "kodeTypeId": "TEKNISKEDATA.DRIVSTOFFTYPE",
+                                            "kodeVerdi": "5",
+                                            "tidligereKodeVerdi": []
+                                        },
+                                        "forbrukOgUtslipp": [
+                                            {
+                                                "malemetode": {
+                                                    "kodeBeskrivelse": "WLTP",
+                                                    "kodeNavn": "MALEMETODETYPE_WLTP",
+                                                    "kodeTypeId": "MALEMETODETYPE",
+                                                    "kodeVerdi": "WLTP",
+                                                    "tidligereKodeVerdi": []
+                                                },
+                                                "wltpKjoretoyspesifikk": {
+                                                    "rekkeviddeKmBlandetkjoring": 54
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "motorOgDrivverk": {
+                                "girkassetype": {
+                                    "kodeBeskrivelse": "Automat",
+                                    "kodeNavn": "Automat",
+                                    "kodeTypeId": "TEKNISKEDATA.GIRKASSETYPE",
+                                    "kodeVerdi": "A",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "girutvekslingPrGir": [],
+                                "hybridElektriskKjoretoy": true,
+                                "hybridKategori": {
+                                    "kodeBeskrivelse": "Ladbar hybrid",
+                                    "kodeNavn": "Ladbar hybrid",
+                                    "kodeTypeId": "TEKNISKEDATA.HYBRIDKATEGORI",
+                                    "kodeVerdi": "LADBAR",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "maksimumHastighet": [
+                                    170
+                                ],
+                                "maksimumHastighetMalt": [],
+                                "motor": [
+                                    {
+                                        "antallSylindre": 4,
+                                        "arbeidsprinsipp": {
+                                            "kodeBeskrivelse": "Otto",
+                                            "kodeNavn": "Otto",
+                                            "kodeTypeId": "TEKNISKEDATA.ARBEIDSPRINSIPP",
+                                            "kodeVerdi": "OTTO",
+                                            "tidligereKodeVerdi": []
+                                        },
+                                        "avgassResirkulering": true,
+                                        "drivstoff": [
+                                            {
+                                                "drivstoffKode": {
+                                                    "kodeBeskrivelse": "Bensin",
+                                                    "kodeNavn": "Bensin",
+                                                    "kodeTypeId": "TEKNISKEDATA.DRIVSTOFFTYPE",
+                                                    "kodeVerdi": "1",
+                                                    "tidligereKodeVerdi": []
+                                                },
+                                                "maksNettoEffekt": 89.0,
+                                                "maksNettoEffektVedOmdreiningstallMin1": 4500,
+                                                "tomgangsOmdreiningstall": 1100
+                                            }
+                                        ],
+                                        "fordampningsutslippKontrollSystem": true,
+                                        "katalysator": true,
+                                        "ladeluftkjoler": false,
+                                        "luftInnsproytning": false,
+                                        "motorKode": "4B11",
+                                        "oksygenSensor": true,
+                                        "overladet": false,
+                                        "partikkelfilterMotor": false,
+                                        "slagvolum": 1998,
+                                        "sylinderArrangement": {
+                                            "kodeBeskrivelse": "Rekke",
+                                            "kodeNavn": "Rekke",
+                                            "kodeTypeId": "TEKNISKEDATA.SYLINDERARRANGEMENT",
+                                            "kodeVerdi": "REKKE",
+                                            "tidligereKodeVerdi": []
+                                        }
+                                    },
+                                    {
+                                        "arbeidsprinsipp": {
+                                            "kodeBeskrivelse": "Elektrisk",
+                                            "kodeNavn": "Elektrisk",
+                                            "kodeTypeId": "TEKNISKEDATA.ARBEIDSPRINSIPP",
+                                            "kodeVerdi": "ELEKTRISK",
+                                            "tidligereKodeVerdi": []
+                                        },
+                                        "drivstoff": [
+                                            {
+                                                "drivstoffKode": {
+                                                    "kodeBeskrivelse": "Elektrisk",
+                                                    "kodeNavn": "Elektrisk",
+                                                    "kodeTypeId": "TEKNISKEDATA.DRIVSTOFFTYPE",
+                                                    "kodeVerdi": "5",
+                                                    "tidligereKodeVerdi": []
+                                                },
+                                                "maksEffektPrTime": 25.0,
+                                                "maksNettoEffekt": 60.0,
+                                                "spenning": 300.0
+                                            }
+                                        ],
+                                        "motorKode": "S61"
+                                    },
+                                    {
+                                        "arbeidsprinsipp": {
+                                            "kodeBeskrivelse": "Elektrisk",
+                                            "kodeNavn": "Elektrisk",
+                                            "kodeTypeId": "TEKNISKEDATA.ARBEIDSPRINSIPP",
+                                            "kodeVerdi": "ELEKTRISK",
+                                            "tidligereKodeVerdi": []
+                                        },
+                                        "drivstoff": [
+                                            {
+                                                "drivstoffKode": {
+                                                    "kodeBeskrivelse": "Elektrisk",
+                                                    "kodeNavn": "Elektrisk",
+                                                    "kodeTypeId": "TEKNISKEDATA.DRIVSTOFFTYPE",
+                                                    "kodeVerdi": "5",
+                                                    "tidligereKodeVerdi": []
+                                                },
+                                                "maksEffektPrTime": 25.0,
+                                                "maksNettoEffekt": 60.0,
+                                                "spenning": 300.0
+                                            }
+                                        ],
+                                        "motorKode": "Y61"
+                                    }
+                                ],
+                                "obd": true
+                            },
+                            "ovrigeTekniskeData": [],
+                            "persontall": {
+                                "sitteplassListe": {
+                                    "sitteplass": [
+                                        {
+                                            "beltestrammer": true,
+                                            "frontairbag": true,
+                                            "posisjon": "Venstre",
+                                            "rad": 1
+                                        },
+                                        {
+                                            "posisjon": "Midtre",
+                                            "rad": 1
+                                        },
+                                        {
+                                            "beltestrammer": true,
+                                            "frontairbag": true,
+                                            "kneairbag": false,
+                                            "posisjon": "Høyre",
+                                            "rad": 1
+                                        },
+                                        {
+                                            "beltestrammer": false,
+                                            "frontairbag": false,
+                                            "kneairbag": false,
+                                            "posisjon": "Venstre",
+                                            "rad": 2,
+                                            "sideairbag": false
+                                        },
+                                        {
+                                            "beltestrammer": false,
+                                            "frontairbag": false,
+                                            "hodegardinairbag": false,
+                                            "kneairbag": false,
+                                            "posisjon": "Midtre",
+                                            "rad": 2,
+                                            "sideairbag": false
+                                        },
+                                        {
+                                            "beltestrammer": false,
+                                            "frontairbag": false,
+                                            "kneairbag": false,
+                                            "posisjon": "Høyre",
+                                            "rad": 2,
+                                            "sideairbag": false
+                                        }
+                                    ]
+                                },
+                                "sitteplasserForan": 2,
+                                "sitteplasserTotalt": 5
+                            },
+                            "tilhengerkopling": {
+                                "kopling": []
+                            },
+                            "vekter": {
+                                "egenvekt": 1860,
+                                "egenvektMinimum": 1860,
+                                "nyttelast": 435,
+                                "tekniskTillattForhoyetTotalvekt": 2450,
+                                "tillattTilhengervektMedBrems": 1500,
+                                "tillattTilhengervektUtenBrems": 750,
+                                "tillattTotalvekt": 2370,
+                                "tillattVertikalKoplingslast": 75,
+                                "tillattVogntogvekt": 3950,
+                                "vogntogvektAvhBremsesystem": []
+                            }
+                        },
+                        "unntak": []
+                    },
+                    "tilleggsgodkjenninger": []
+                },
+                "periodiskKjoretoyKontroll": {
+                    "kontrollfrist": "2025-04-21",
+                    "SistGodkjent": "2023-04-15"
+                }
+            },
+            "responskoder": []
+        },
+        {
+            "kjoretoy": {
+                "kjoretoyId": {
+                    "imid": "4627",
+                    "kjennemerke": "EC 80261",
+                    "kjoretoyErKryssbyttet": false,
+                    "kryssbytter": [],
+                    "kuid": "3378119451",
+                    "merkekode": "0065",
+                    "understellsnummer": "TESTDIGDIR0000015",
+                    "unntattOffentlighet": []
+                },
+                "forstegangsregistrering": {
+                    "registrertForstegangNorgeDato": "2021-04-21"
+                },
+                "eierskap": {
+                    "eier": {
+                        "adresse": {
+                            "adresselinje1": "TESTGATA 11",
+                            "kommunenavn": "OSLO",
+                            "kommunenummer": "0301",
+                            "land": "NORGE",
+                            "landkode": "NOR",
+                            "postnummer": "0603",
+                            "poststed": "OSLO"
+                        },
+                        "adressestatus": {
+                            "kodeVerdi": "VANLIG_BOSATT",
+                            "tidligereKodeVerdi": []
+                        },
+                        "erUverifisert": false,
+                        "fomTidspunkt": "2021-04-21T14:01:20.082+02:00",
+                        "kundeId": "124000807",
+                        "person": {
+                            "etternavn": "BERGER",
+                            "fodselsdato": "1936-09-11",
+                            "fornavn": "JARLE"
+                        }
+                    },
+                    "vedtakstidspunkt": "2021-04-21T14:01:24.021+02:00"
+                },
+                "kjennemerke": [
+                    {
+                        "fomTidspunkt": "2021-04-21T14:00:53.293+02:00",
+                        "kjennemerke": "EC 80261",
+                        "kjennemerkekategori": "KJORETOY",
+                        "kjennemerketype": {
+                            "kodeBeskrivelse": "Sorte tegn på hvit bunn",
+                            "kodeNavn": "Ordinære kjennemerker",
+                            "kodeVerdi": "ORDINART",
+                            "tidligereKodeVerdi": []
+                        }
+                    }
+                ],
+                "registrering": {
+                    "fomTidspunkt": "2021-04-21T14:00:53.293+02:00",
+                    "registreringsstatus": {
+                        "kodeBeskrivelse": "Registrert",
+                        "kodeVerdi": "REGISTRERT",
+                        "tidligereKodeVerdi": []
+                    }
+                },
+                "godkjenning": {
+                    "forstegangsGodkjenning": {
+                        "forstegangRegistrertDato": "2021-04-21",
+                        "fortollingOgMva": {
+                            "beskrivelse": "Utfyllende beskrivelse",
+                            "fortollingsreferanse": "3867399595848392",
+                            "linje": 1
+                        },
+                        "godkjenningsId": "4999909",
+                        "godkjenningsundertype": {
+                            "kodeNavn": "COC",
+                            "kodeVerdi": "COC",
+                            "tidligereKodeVerdi": []
+                        },
+                        "unntak": []
+                    },
+                    "kjoretoymerknad": [
+                        {
+                            "merknad": "Egenvekt og nyttelast er veiledende - avhengig av utstyr.  Y",
+                            "merknadtypeKode": "TYPEGODKJENNINGSMERKNAD"
+                        }
+                    ],
+                    "registreringsbegrensninger": {
+                        "registreringsbegrensning": []
+                    },
+                    "tekniskGodkjenning": {
+                        "godkjenningsId": "4999909",
+                        "godkjenningsundertype": {
+                            "kodeNavn": "COC",
+                            "kodeVerdi": "COC",
+                            "tidligereKodeVerdi": []
+                        },
+                        "gyldigFraDato": "2021-04-21",
+                        "gyldigFraDatoTid": "2021-04-21T14:00:06+02:00",
+                        "kjoretoyklassifisering": {
+                            "beskrivelse": "Personbil",
+                            "efTypegodkjenning": {
+                                "typegodkjenningNrTekst": "e4*2007/46*0667*00",
+                                "typegodkjenningnummer": {
+                                    "direktiv": "2007/46",
+                                    "land": "e4",
+                                    "serie": "0667",
+                                    "utvidelse": "00"
+                                },
+                                "variant": "60",
+                                "versjon": "B19"
+                            },
+                            "kjoretoyAvgiftsKode": {
+                                "kodeBeskrivelse": "Personbil, unntatt ambulanse",
+                                "kodeNavn": "Personbil",
+                                "kodeVerdi": "101",
+                                "tidligereKodeVerdi": []
+                            },
+                            "nasjonalGodkjenning": {
+                                "nasjonaltGodkjenningsAr": "2013",
+                                "nasjonaltGodkjenningsHovednummer": "5786",
+                                "nasjonaltGodkjenningsUndernummer": "008"
+                            },
+                            "spesielleKjennetegn": "",
+                            "tekniskKode": {
+                                "kodeBeskrivelse": "Bil for persontransport med høyst 8 sitteplasser i tillegg til førersetet (Personbil)",
+                                "kodeNavn": "Personbil",
+                                "kodeVerdi": "M1",
+                                "tidligereKodeVerdi": []
+                            },
+                            "tekniskUnderkode": {
+                                "kodeVerdi": "INGENKODE",
+                                "tidligereKodeVerdi": []
+                            },
+                            "iSamsvarMedTypegodkjenning": true
+                        },
+                        "krav": [],
+                        "tekniskeData": {
+                            "akslinger": {
+                                "akselGruppe": [
+                                    {
+                                        "akselListe": {
+                                            "aksel": [
+                                                {
+                                                    "antallHjul": 2,
+                                                    "fordelingAvTillattTotalvektAkselMin": 1100,
+                                                    "id": 1,
+                                                    "maksimalSporvidde": 1662,
+                                                    "minAvstandTilNesteAksling": 2960,
+                                                    "minimalSporvidde": 1662,
+                                                    "plasseringAksel": "1",
+                                                    "styreAksel": true,
+                                                    "tekniskTillattAkselLast": 1276
+                                                }
+                                            ]
+                                        },
+                                        "fordelingAvTillattTotalvektAkselGruppeMin": 1100,
+                                        "id": 1,
+                                        "plasseringAkselGruppe": "1",
+                                        "tekniskTillattAkselGruppeLast": 1276
+                                    },
+                                    {
+                                        "akselListe": {
+                                            "aksel": [
+                                                {
+                                                    "antallHjul": 2,
+                                                    "drivAksel": true,
+                                                    "fordelingAvTillattTotalvektAkselMin": 1490,
+                                                    "id": 2,
+                                                    "maksimalSporvidde": 1700,
+                                                    "minimalSporvidde": 1700,
+                                                    "plasseringAksel": "2",
+                                                    "tekniskTillattAkselLast": 1500
+                                                }
+                                            ]
+                                        },
+                                        "fordelingAvTillattTotalvektAkselGruppeMin": 1490,
+                                        "id": 2,
+                                        "plasseringAkselGruppe": "2",
+                                        "tekniskTillattAkselGruppeLast": 1500
+                                    }
+                                ],
+                                "antallAksler": 2
+                            },
+                            "bremser": {
+                                "abs": true,
+                                "tilhengerBremseforbindelse": []
+                            },
+                            "dekkOgFelg": {
+                                "akselDekkOgFelgKombinasjon": [
+                                    {
+                                        "akselDekkOgFelg": [
+                                            {
+                                                "akselId": 1,
+                                                "belastningskodeDekk": "98",
+                                                "dekkdimensjon": "245/45R19",
+                                                "felgdimensjon": "19X8.0J",
+                                                "hastighetskodeDekk": "V",
+                                                "innpress": "40",
+                                                "tvilling": false
+                                            },
+                                            {
+                                                "akselId": 2,
+                                                "belastningskodeDekk": "98",
+                                                "dekkdimensjon": "245/45R19",
+                                                "felgdimensjon": "19X8.0J",
+                                                "hastighetskodeDekk": "V",
+                                                "innpress": "40",
+                                                "tvilling": false
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "akselDekkOgFelg": [
+                                            {
+                                                "akselId": 1,
+                                                "belastningskodeDekk": "102",
+                                                "dekkdimensjon": "245/45R19 M+S",
+                                                "felgdimensjon": "19X8.0J",
+                                                "hastighetskodeDekk": "V",
+                                                "innpress": "40",
+                                                "tvilling": false
+                                            },
+                                            {
+                                                "akselId": 2,
+                                                "belastningskodeDekk": "102",
+                                                "dekkdimensjon": "245/45R19 M+S",
+                                                "felgdimensjon": "19X8.0J",
+                                                "hastighetskodeDekk": "V",
+                                                "innpress": "40",
+                                                "tvilling": false
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "dekkOgFelgSidevogn": {}
+                            },
+                            "dimensjoner": {
+                                "bredde": 1964,
+                                "hoyde": 1445,
+                                "lengde": 4970
+                            },
+                            "generelt": {
+                                "fabrikant": [
+                                    {
+                                        "fabrikantNavn": "TESLA MOTORS INC."
+                                    }
+                                ],
+                                "handelsbetegnelse": [
+                                    "Model X"
+                                ],
+                                "merke": [
+                                    {
+                                        "merke": "TESLA MOTORS",
+                                        "merkeKode": "0065"
+                                    }
+                                ],
+                                "tekniskKode": {
+                                    "kodeBeskrivelse": "Bil for persontransport med høyst 8 sitteplasser i tillegg til førersetet (Personbil)",
+                                    "kodeNavn": "Personbil",
+                                    "kodeVerdi": "M1",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "typebetegnelse": "002"
+                            },
+                            "karosseriOgLasteplan": {
+                                "antallDorer": [
+                                    4
+                                ],
+                                "dorUtforming": [],
+                                "karosseritype": {
+                                    "kodeBeskrivelse": "Sedan (AA) med overhengslet dør bak på kjøretøyet",
+                                    "kodeNavn": "Kombikupé (AB)",
+                                    "kodeTypeId": "TEKNISKEDATA.KAROSSERITYPE",
+                                    "kodeVerdi": "AB",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "kjennemerketypeBak": {
+                                    "kodeBeskrivelse": "Stort smalt",
+                                    "kodeNavn": "Stort smalt",
+                                    "kodeTypeId": "TEKNISKEDATA.KJENNEMERKESTORRELSE",
+                                    "kodeVerdi": "SS",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "kjennemerkestorrelseBak": {
+                                    "kodeBeskrivelse": "Stort smalt",
+                                    "kodeNavn": "Stort smalt",
+                                    "kodeTypeId": "TEKNISKEDATA.KJENNEMERKESTORRELSE",
+                                    "kodeVerdi": "SS",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "kjennemerketypeForan": {
+                                    "kodeBeskrivelse": "Stort smalt",
+                                    "kodeNavn": "Stort smalt",
+                                    "kodeTypeId": "TEKNISKEDATA.KJENNEMERKESTORRELSE",
+                                    "kodeVerdi": "SS",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "kjennemerkestorrelseForan": {
+                                    "kodeBeskrivelse": "Stort smalt",
+                                    "kodeNavn": "Stort smalt",
+                                    "kodeTypeId": "TEKNISKEDATA.KJENNEMERKESTORRELSE",
+                                    "kodeVerdi": "SS",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "oppbygningUnderstellsnummer": "5YJS?????????????",
+                                "plasseringAvDorer": {
+                                    "kodeBeskrivelse": "4 sidedører",
+                                    "kodeNavn": "4 sidedører",
+                                    "kodeTypeId": "TEKNISKEDATA.PLASSERINGDORER",
+                                    "kodeVerdi": "4_SIDE",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "plasseringFabrikasjonsplate": [
+                                    {
+                                        "kodeBeskrivelse": "Kupé - venstre døråpning",
+                                        "kodeNavn": "Kupé - venstre døråpning",
+                                        "kodeTypeId": "TEKNISKEDATA.PLASSERINGMERKING",
+                                        "kodeVerdi": "KUPE_VENSTRE_DORAPNING",
+                                        "tidligereKodeVerdi": []
+                                    }
+                                ],
+                                "plasseringUnderstellsnummer": [
+                                    {
+                                        "kodeBeskrivelse": "Motorrom",
+                                        "kodeNavn": "Motorrom",
+                                        "kodeTypeId": "TEKNISKEDATA.PLASSERINGMERKING",
+                                        "kodeVerdi": "MOTORROM",
+                                        "tidligereKodeVerdi": []
+                                    }
+                                ],
+                                "rFarge": [
+                                    {
+                                        "kodeBeskrivelse": "herunder: Blåsvart, grafitt mørk, gråsort, koksgrå mørk, koksgrå mørk metallic",
+                                        "kodeNavn": "Svart",
+                                        "kodeTypeId": "TEKNISKEDATA.KAROSSERIFARGE",
+                                        "kodeVerdi": "06",
+                                        "tidligereKodeVerdi": []
+                                    }
+                                ]
+                            },
+                            "miljodata": {
+                                "miljoOgdrivstoffGruppe": [
+                                    {
+                                        "drivstoffKodeMiljodata": {
+                                            "kodeBeskrivelse": "Elektrisk",
+                                            "kodeNavn": "Elektrisk",
+                                            "kodeTypeId": "TEKNISKEDATA.DRIVSTOFFTYPE",
+                                            "kodeVerdi": "5",
+                                            "tidligereKodeVerdi": []
+                                        },
+                                        "forbrukOgUtslipp": [
+                                            {
+                                                "malemetode": {
+                                                    "kodeBeskrivelse": "WLTP",
+                                                    "kodeNavn": "MALEMETODETYPE_WLTP",
+                                                    "kodeTypeId": "MALEMETODETYPE",
+                                                    "kodeVerdi": "WLTP",
+                                                    "tidligereKodeVerdi": []
+                                                },
+                                                "wltpKjoretoyspesifikk": {
+                                                    "rekkeviddeKmBlandetkjoring": 417
+                                                }
+                                            }
+                                        ],
+                                        "lyd": {}
+                                    }
+                                ]
+                            },
+                            "motorOgDrivverk": {
+                                "antallGir": 1,
+                                "girkassetype": {
+                                    "kodeBeskrivelse": "Automat",
+                                    "kodeNavn": "Automat",
+                                    "kodeTypeId": "TEKNISKEDATA.GIRKASSETYPE",
+                                    "kodeVerdi": "A",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "girutvekslingPrGir": [],
+                                "hybridElektriskKjoretoy": false,
+                                "hybridKategori": {
+                                    "kodeBeskrivelse": "Ingen eller ikke relevant",
+                                    "kodeNavn": "Ingen",
+                                    "kodeTypeId": "TEKNISKEDATA.HYBRIDKATEGORI",
+                                    "kodeVerdi": "INGEN",
+                                    "tidligereKodeVerdi": []
+                                },
+                                "maksimumHastighet": [
+                                    193
+                                ],
+                                "maksimumHastighetMalt": [],
+                                "motor": [
+                                    {
+                                        "avgassResirkulering": false,
+                                        "drivstoff": [
+                                            {
+                                                "drivstoffKode": {
+                                                    "kodeBeskrivelse": "Elektrisk",
+                                                    "kodeNavn": "Elektrisk",
+                                                    "kodeTypeId": "TEKNISKEDATA.DRIVSTOFFTYPE",
+                                                    "kodeVerdi": "5",
+                                                    "tidligereKodeVerdi": []
+                                                },
+                                                "maksEffektPrTime": 52.0
+                                            }
+                                        ],
+                                        "fordampningsutslippKontrollSystem": false,
+                                        "katalysator": false,
+                                        "ladeluftkjoler": false,
+                                        "luftInnsproytning": false,
+                                        "motorKode": "L1S",
+                                        "oksygenSensor": false,
+                                        "overladet": false,
+                                        "partikkelfilterMotor": false
+                                    }
+                                ],
+                                "obd": false
+                            },
+                            "ovrigeTekniskeData": [],
+                            "persontall": {
+                                "sitteplassListe": {
+                                    "sitteplass": [
+                                        {
+                                            "beltestrammer": true,
+                                            "frontairbag": true,
+                                            "hodegardinairbag": true,
+                                            "kneairbag": true,
+                                            "posisjon": "left",
+                                            "rad": 1,
+                                            "sideairbag": true
+                                        },
+                                        {
+                                            "beltestrammer": false,
+                                            "frontairbag": false,
+                                            "hodegardinairbag": false,
+                                            "kneairbag": false,
+                                            "posisjon": "center",
+                                            "rad": 1,
+                                            "sideairbag": false
+                                        },
+                                        {
+                                            "beltestrammer": true,
+                                            "frontairbag": true,
+                                            "hodegardinairbag": true,
+                                            "kneairbag": true,
+                                            "posisjon": "right",
+                                            "rad": 1,
+                                            "sideairbag": true
+                                        },
+                                        {
+                                            "beltestrammer": false,
+                                            "frontairbag": false,
+                                            "hodegardinairbag": true,
+                                            "kneairbag": false,
+                                            "posisjon": "left",
+                                            "rad": 2,
+                                            "sideairbag": false
+                                        },
+                                        {
+                                            "beltestrammer": false,
+                                            "frontairbag": false,
+                                            "hodegardinairbag": false,
+                                            "kneairbag": false,
+                                            "posisjon": "center",
+                                            "rad": 2,
+                                            "sideairbag": false
+                                        },
+                                        {
+                                            "beltestrammer": false,
+                                            "frontairbag": false,
+                                            "hodegardinairbag": true,
+                                            "kneairbag": false,
+                                            "posisjon": "right",
+                                            "rad": 2,
+                                            "sideairbag": false
+                                        }
+                                    ]
+                                },
+                                "sitteplasserForan": 2,
+                                "sitteplasserTotalt": 5
+                            },
+                            "tilhengerkopling": {
+                                "kopling": []
+                            },
+                            "vekter": {
+                                "egenvekt": 1999,
+                                "egenvektMaksimum": 2081,
+                                "egenvektMinimum": 1999,
+                                "nyttelast": 516,
+                                "tillattTilhengervektMedBrems": 0,
+                                "tillattTilhengervektUtenBrems": 0,
+                                "tillattTotalvekt": 2590,
+                                "tillattVertikalKoplingslast": 0,
+                                "tillattVogntogvekt": 0,
+                                "vogntogvektAvhBremsesystem": []
+                            }
+                        },
+                        "unntak": []
+                    },
+                    "tilleggsgodkjenninger": []
+                },
+                "periodiskKjoretoyKontroll": {
+                    "kontrollfrist": "2025-04-21"
+                }
+            },
+            "responskoder": []
+        }
+    ]
+}

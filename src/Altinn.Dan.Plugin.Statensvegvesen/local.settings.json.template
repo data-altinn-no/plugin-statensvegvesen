@@ -1,0 +1,12 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+        "RedisConnectionString": "redis://localhost:6379?ConnectTimeout=5000&IdleTimeOutSecs=180",
+        "BreakerRetryWaitTime": "10",
+        "SvvUrl": "",
+        "SvvUsername": "",
+        "SvvPassword": ""
+    }
+}
