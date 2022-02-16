@@ -43,7 +43,6 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
                     case HttpStatusCode.NoContent:
                     {
                         return null;
-                        // throw new EvidenceSourcePermanentClientException(Metadata.ERROR_NO_VEHICLES_FOUND, $"No vehicles found");
                     }
                     case HttpStatusCode.BadRequest:
                     {
