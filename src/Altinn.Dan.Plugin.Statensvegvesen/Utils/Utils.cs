@@ -11,7 +11,7 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Utils
         {
             var internalResponse = new SvvResponse { Vehicles = new List<Vehicle>() };
             if (externalResponse != null)
-                foreach (var kjoretoyResponse in externalResponse?.Kjoretoyresponser)
+                foreach (var kjoretoyResponse in externalResponse.Kjoretoyresponser)
                 {
                     var technicalApproval = kjoretoyResponse.Kjoretoy?.Godkjenning?.TekniskGodkjenning;
                     internalResponse.Vehicles.Add(new Vehicle

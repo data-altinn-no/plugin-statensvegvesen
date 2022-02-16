@@ -43,12 +43,17 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Test.TestUtils
             return httpClient;
         }
 
+        public static string LoadJson(string filename)
+        {
+            using (var r = new StreamReader("TestResources" + Path.DirectorySeparatorChar + filename))
+            {
+                return r.ReadToEnd();
+            }
+        }
+
         public static T LoadJson<T>(string filename)
         {
-            using (var reader = new StreamReader("TestResources" + Path.DirectorySeparatorChar + filename))
-            {
-                return JsonConvert.DeserializeObject<T>(reader.ReadToEnd());
-            }
+            return JsonConvert.DeserializeObject<T>(LoadJson(filename));
         }
     }
 }

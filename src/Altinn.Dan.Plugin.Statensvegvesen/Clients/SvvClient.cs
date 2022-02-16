@@ -12,9 +12,9 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
     {
         private readonly HttpClient _httpClient;
 
-        public SvvClient(HttpClient httpClient)
+        public SvvClient(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClientFactory.CreateClient("SvvClient");
         }
 
         /// <param name="fodselsnummer">Fødselsnummer på eier, medeier eller leasingtaker</param>
@@ -42,7 +42,8 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
                     }
                     case HttpStatusCode.NoContent:
                     {
-                        throw new EvidenceSourcePermanentClientException(Metadata.ERROR_NO_VEHICLES_FOUND, $"No vehicles found");
+                        return null;
+                        // throw new EvidenceSourcePermanentClientException(Metadata.ERROR_NO_VEHICLES_FOUND, $"No vehicles found");
                     }
                     case HttpStatusCode.BadRequest:
                     {

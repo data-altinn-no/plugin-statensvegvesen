@@ -32,6 +32,8 @@ internal class Program
                 // See https://docs.microsoft.com/en-us/azure/azure-monitor/app/worker-service#using-application-insights-sdk-for-worker-services
                 services.AddApplicationInsightsTelemetryWorkerService();
 
+                services.AddScoped<SvvClient>();
+
                 services.AddOptions<ApplicationSettings>()
                     .Configure<IConfiguration>((settings, configuration) => configuration.Bind(settings));
                 ApplicationSettings = services.BuildServiceProvider().GetRequiredService<IOptions<ApplicationSettings>>().Value;
@@ -46,7 +48,7 @@ internal class Program
                 };
                 services.AddPolicyRegistry(registry);
 
-                services.AddHttpClient<SvvClient>((provider, client) =>
+                services.AddHttpClient("SvvClient", (provider, client) =>
                 {
                     client.Timeout = new TimeSpan(0, 0, 30);
                     client.BaseAddress = new Uri(ApplicationSettings.SvvUrl);

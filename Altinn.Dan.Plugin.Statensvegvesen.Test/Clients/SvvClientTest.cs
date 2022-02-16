@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Altinn.Dan.Plugin.Statensvegvesen.Clients;
 using Altinn.Dan.Plugin.Statensvegvesen.Test.TestUtils;
+using Moq;
 using Nadobe.Common.Exceptions;
 using Xunit;
 
@@ -10,11 +11,39 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Test.Clients;
 
 public class SvvClientTest
 {
+    private readonly Mock<IHttpClientFactory> _httpClientFactory = new Mock<IHttpClientFactory>();
+
+    [Fact]
+    public async Task SokKjoretoyForFodselsnummer_ok()
+    {
+        var kjoretoysokResponse = TestHelpers.LoadJson("KjoretoysokResponse_from_svv.json");
+        var httpClient = TestHelpers.GetHttpClientMock(HttpStatusCode.OK, kjoretoysokResponse);
+        _httpClientFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
+        var client = new SvvClient(_httpClientFactory.Object);
+
+        var actual = await client.SokKjoretoyForFodselsnummer("123456789123");
+
+        Assert.Equal(2, actual.Kjoretoyresponser.Count);
+    }
+
+    [Fact]
+    public async Task SokKjoretoyForFodselsnummer_NoContent_ReturnsNull()
+    {
+        var httpClient = TestHelpers.GetHttpClientMock(HttpStatusCode.NoContent);
+        _httpClientFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
+        var client = new SvvClient(_httpClientFactory.Object);
+
+        var actual = await client.SokKjoretoyForFodselsnummer("123456789123");
+
+        Assert.Null(actual);
+    }
+
     [Fact]
     public async Task SokKjoretoyForFodselsnummer_BadRequest_Exception()
     {
         var httpClient = TestHelpers.GetHttpClientMock(HttpStatusCode.BadRequest);
-        var client = new SvvClient(httpClient);
+        _httpClientFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
+        var client = new SvvClient(_httpClientFactory.Object);
 
         var exception = await Assert.ThrowsAsync<EvidenceSourcePermanentClientException>(() => client.SokKjoretoyForFodselsnummer("123456789123"));
 
@@ -23,22 +52,11 @@ public class SvvClientTest
     }
 
     [Fact]
-    public async Task SokKjoretoyForFodselsnummer_NoContent_Exception()
-    {
-        var httpClient = TestHelpers.GetHttpClientMock(HttpStatusCode.NoContent);
-        var client = new SvvClient(httpClient);
-
-        var exception = await Assert.ThrowsAsync<EvidenceSourcePermanentClientException>(() => client.SokKjoretoyForFodselsnummer("123456789123"));
-
-        Assert.Equal(Metadata.ERROR_NO_VEHICLES_FOUND, exception.DetailErrorCode);
-        Assert.Contains("No vehicles found", exception.Message);
-    }
-
-    [Fact]
     public async Task SokKjoretoyForFodselsnummer_RequestFail_Exception()
     {
         var httpClient = TestHelpers.GetHttpClientExceptionMock();
-        var client = new SvvClient(httpClient);
+        _httpClientFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
+        var client = new SvvClient(_httpClientFactory.Object);
 
         var exception = await Assert.ThrowsAsync<EvidenceSourcePermanentServerException>(() => client.SokKjoretoyForFodselsnummer("123456789123"));
 
@@ -49,7 +67,7 @@ public class SvvClientTest
     [Fact]
     public async Task SokKjoretoyForFodselsnummer_NoArguments_Exception()
     {
-        var client = new SvvClient(new HttpClient());
+        var client = new SvvClient(new Mock<IHttpClientFactory>().Object);
 
         var exception = await Assert.ThrowsAsync<EvidenceSourcePermanentClientException>(() => client.SokKjoretoyForFodselsnummer(null));
 
