@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -45,12 +46,22 @@ public class Main
 
     private async Task<List<EvidenceValue>> GetEvidenceValuesKjoretoy(EvidenceHarvesterRequest evidenceHarvesterRequest)
     {
-        var svvResponse = OedUtils.MapToInternal(await _svvClient.SokKjoretoyForFodselsnummer(evidenceHarvesterRequest.OrganizationNumber));
+        var subject = evidenceHarvesterRequest.SubjectParty;
+        try
+        {
+            var svvResponse = OedUtils.MapToInternal(await _svvClient.SokKjoretoyForFodselsnummer(subject?.NorwegianSocialSecurityNumber));
 
-        var ecb = new EvidenceBuilder(new Metadata(), "Kjoretoy");
-        ecb.AddEvidenceValue("default", JsonConvert.SerializeObject(svvResponse), Metadata.SOURCE);
+            var ecb = new EvidenceBuilder(new Metadata(), "Kjoretoy");
+            ecb.AddEvidenceValue("default", JsonConvert.SerializeObject(svvResponse), Metadata.SOURCE);
 
-        return ecb.GetEvidenceValues();
+            return ecb.GetEvidenceValues();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"Func 'Kjoretoy' failed for input '{(subject?.NorwegianSocialSecurityNumber.Length < 6 ? subject.NorwegianSocialSecurityNumber : subject?.GetAsString())}': {e.Message}");
+
+            throw;
+        }
     }
 
     [Function(Constants.EvidenceSourceMetadataFunctionName)]
