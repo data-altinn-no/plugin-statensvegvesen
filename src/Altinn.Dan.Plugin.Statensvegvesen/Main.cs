@@ -52,7 +52,7 @@ public class Main
             var svvResponse = OedUtils.MapToInternal(await _svvClient.SokKjoretoyForFodselsnummer(subject?.NorwegianSocialSecurityNumber));
 
             var ecb = new EvidenceBuilder(new Metadata(), "Kjoretoy");
-            ecb.AddEvidenceValue("default", JsonConvert.SerializeObject(svvResponse), Metadata.SOURCE);
+            ecb.AddEvidenceValue("default", JsonConvert.SerializeObject(svvResponse), Metadata.SOURCE, false);
 
             return ecb.GetEvidenceValues();
         }
