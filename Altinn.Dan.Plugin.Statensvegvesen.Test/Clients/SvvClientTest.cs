@@ -1,10 +1,12 @@
+using Altinn.Dan.Plugin.Statensvegvesen.Clients;
+using Altinn.Dan.Plugin.Statensvegvesen.Test.TestUtils;
+using Dan.Common.Exceptions;
+using Moq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Altinn.Dan.Plugin.Statensvegvesen.Clients;
-using Altinn.Dan.Plugin.Statensvegvesen.Test.TestUtils;
-using Moq;
-using Nadobe.Common.Exceptions;
+using Altinn.Dan.Plugin.Statensvegvesen.Config;
+using Microsoft.Extensions.Options;
 using Xunit;
 
 namespace Altinn.Dan.Plugin.Statensvegvesen.Test.Clients;
@@ -19,7 +21,7 @@ public class SvvClientTest
         var kjoretoysokResponse = TestHelpers.LoadJson("KjoretoysokResponse_from_svv.json");
         var httpClient = TestHelpers.GetHttpClientMock(HttpStatusCode.OK, kjoretoysokResponse);
         _httpClientFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
-        var client = new SvvClient(_httpClientFactory.Object);
+        var client = new SvvClient(_httpClientFactory.Object, Options.Create(new ApplicationSettings()));
 
         var actual = await client.SokKjoretoyForFodselsnummer("123456789123");
 
@@ -31,7 +33,7 @@ public class SvvClientTest
     {
         var httpClient = TestHelpers.GetHttpClientMock(HttpStatusCode.NoContent);
         _httpClientFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
-        var client = new SvvClient(_httpClientFactory.Object);
+        var client = new SvvClient(_httpClientFactory.Object, Options.Create(new ApplicationSettings()));
 
         var actual = await client.SokKjoretoyForFodselsnummer("123456789123");
 
@@ -43,7 +45,7 @@ public class SvvClientTest
     {
         var httpClient = TestHelpers.GetHttpClientMock(HttpStatusCode.BadRequest);
         _httpClientFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
-        var client = new SvvClient(_httpClientFactory.Object);
+        var client = new SvvClient(_httpClientFactory.Object, Options.Create(new ApplicationSettings()));
 
         var exception = await Assert.ThrowsAsync<EvidenceSourcePermanentClientException>(() => client.SokKjoretoyForFodselsnummer("123456789123"));
 
@@ -56,7 +58,7 @@ public class SvvClientTest
     {
         var httpClient = TestHelpers.GetHttpClientExceptionMock();
         _httpClientFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
-        var client = new SvvClient(_httpClientFactory.Object);
+        var client = new SvvClient(_httpClientFactory.Object, Options.Create(new ApplicationSettings()));
 
         var exception = await Assert.ThrowsAsync<EvidenceSourcePermanentServerException>(() => client.SokKjoretoyForFodselsnummer("123456789123"));
 
@@ -67,7 +69,7 @@ public class SvvClientTest
     [Fact]
     public async Task SokKjoretoyForFodselsnummer_NoArguments_Exception()
     {
-        var client = new SvvClient(new Mock<IHttpClientFactory>().Object);
+        var client = new SvvClient(new Mock<IHttpClientFactory>().Object, new Mock<IOptions<ApplicationSettings>>().Object);
 
         var exception = await Assert.ThrowsAsync<EvidenceSourcePermanentClientException>(() => client.SokKjoretoyForFodselsnummer(null));
 

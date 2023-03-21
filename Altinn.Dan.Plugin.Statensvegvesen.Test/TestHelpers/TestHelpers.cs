@@ -1,14 +1,12 @@
+using Moq;
+using Moq.Protected;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Altinn.Dan.Plugin.Statensvegvesen.Clients;
-using Microsoft.AspNetCore.Http.Internal;
-using Moq;
-using Moq.Protected;
-using Newtonsoft.Json;
 
 namespace Altinn.Dan.Plugin.Statensvegvesen.Test.TestUtils
 {

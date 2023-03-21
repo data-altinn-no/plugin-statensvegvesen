@@ -1,16 +1,18 @@
-using System.Collections.Generic;
 using Altinn.Dan.Plugin.Statensvegvesen.Models;
-using Nadobe.Common.Interfaces;
-using Nadobe.Common.Models;
-using Nadobe.Common.Models.Enums;
+using Dan.Common.Enums;
+using Dan.Common.Interfaces;
+using Dan.Common.Models;
 using Newtonsoft.Json;
 using NJsonSchema;
+using System.Collections.Generic;
 
 namespace Altinn.Dan.Plugin.Statensvegvesen;
 
 public class Metadata : IEvidenceSourceMetadata
 {
-    public const string SOURCE = "Svv";
+    public const string SOURCE = "Statens vegvesen";
+    public const string ebevis = "eBevis";
+    public const string oed = "OED";
 
     public const int ERROR_NO_VEHICLES_FOUND = 1;
 
@@ -26,7 +28,7 @@ public class Metadata : IEvidenceSourceMetadata
             {
                 EvidenceCodeName = "Kjoretoy",
                 EvidenceSource = SOURCE,
-                BelongsToServiceContexts = new List<string> { "OED" },
+                BelongsToServiceContexts = new List<string> { oed },
                 RequiredScopes = "",
                 Values = new List<EvidenceValue>
                 {
@@ -34,7 +36,8 @@ public class Metadata : IEvidenceSourceMetadata
                     {
                         EvidenceValueName = "default",
                         ValueType = EvidenceValueType.JsonSchema,
-                        JsonSchemaDefintion = JsonSchema.FromType<SvvResponse>().ToJson(Formatting.Indented)
+                        JsonSchemaDefintion = JsonSchema.FromType<SvvResponse>().ToJson(Formatting.Indented),
+                        Source = SOURCE
                     }
                 },
                 AuthorizationRequirements = new List<Requirement>
@@ -42,6 +45,33 @@ public class Metadata : IEvidenceSourceMetadata
                     new MaskinportenScopeRequirement
                     {
                         RequiredScopes = new List<string> { "altinn:dataaltinnno/oed" }
+                    }
+                }
+            },
+            new()
+            {
+                EvidenceCodeName = "Verkstedregisteret",
+                EvidenceSource = SOURCE,
+                BelongsToServiceContexts = new List<string> { ebevis },
+                Values = new List<EvidenceValue>
+                {
+                    new()
+                    {
+                        EvidenceValueName = "organisasjonsnummer",
+                        ValueType = EvidenceValueType.String,
+                        Source = SOURCE
+                    },
+                    new()
+                    {
+                        EvidenceValueName = "godkjenningstyper",
+                        ValueType = EvidenceValueType.String,
+                        Source = SOURCE
+                    },
+                    new()
+                    {
+                        EvidenceValueName = "godkjenningsnumre",
+                        ValueType = EvidenceValueType.String,
+                        Source = SOURCE
                     }
                 }
             }

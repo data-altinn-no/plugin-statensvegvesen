@@ -9,4 +9,8 @@ public class ApplicationSettings
     public string SvvUrl { get; set; }
     public string SvvUsername { get; set; }
     public string SvvPassword { get; set; }
+
+    public string SvvBilpleieKey { get; set; }
+
+    public string SvvBilpleieUrl { get; set; }
 }
