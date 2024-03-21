@@ -13,12 +13,15 @@ public class Metadata : IEvidenceSourceMetadata
     public const string SOURCE = "Statens vegvesen";
     public const string ebevis = "eBevis";
     public const string oed = "OED";
+    public const string EDUEDILIGENCE = "eDueDiligence";
 
     public const int ERROR_NO_VEHICLES_FOUND = 1;
 
     public const int ERROR_CCR_UPSTREAM_ERROR = 2;
 
     public const int ERROR_BAD_REQUEST = 3;
+
+    public const int ERROR_QUOTA_EXCEEDED = 4;
 
     public List<EvidenceCode> GetEvidenceCodes()
     {
@@ -45,6 +48,30 @@ public class Metadata : IEvidenceSourceMetadata
                     new MaskinportenScopeRequirement
                     {
                         RequiredScopes = new List<string> { "altinn:dataaltinnno/oed" }
+                    }
+                }
+            },
+            new()
+            {
+                EvidenceCodeName = "Kjoretoyopplysninger",
+                EvidenceSource = SOURCE,
+                BelongsToServiceContexts = new List<string> { EDUEDILIGENCE },
+                RequiredScopes = "",
+                Values = new List<EvidenceValue>
+                {
+                    new()
+                    {
+                        EvidenceValueName = "default",
+                        ValueType = EvidenceValueType.JsonSchema,
+                        JsonSchemaDefintion = JsonSchema.FromType<SvvResponse>().ToJson(Formatting.Indented),
+                        Source = SOURCE
+                    }
+                },
+                AuthorizationRequirements = new List<Requirement>
+                {
+                    new MaskinportenScopeRequirement
+                    {
+                        RequiredScopes = new List<string> { "altinn:dataaltinnno/eduediligence" }
                     }
                 }
             },

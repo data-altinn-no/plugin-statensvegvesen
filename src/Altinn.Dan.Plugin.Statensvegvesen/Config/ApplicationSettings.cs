@@ -13,4 +13,8 @@ public class ApplicationSettings
     public string SvvBilpleieKey { get; set; }
 
     public string SvvBilpleieUrl { get; set; }
+
+    public string KjoretoyUrl { get; set; }
+
+
 }

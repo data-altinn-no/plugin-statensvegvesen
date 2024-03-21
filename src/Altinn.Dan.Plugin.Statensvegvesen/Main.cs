@@ -60,6 +60,38 @@ public class Main
         }
     }
 
+    [Function("Kjoretoyopplysninger")]
+    public async Task<HttpResponseData> Kjoretoyopplysninger(
+        [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestData req,
+        FunctionContext context)
+    {
+        _logger.LogInformation("Running func 'Kjoretoy'");
+        var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+        var evidenceHarvesterRequest = JsonConvert.DeserializeObject<EvidenceHarvesterRequest>(requestBody);
+
+        return await EvidenceSourceResponse.CreateResponse(req, () => GetEvidenceValuesKjoretoyopplysninger(evidenceHarvesterRequest));
+    }
+
+    private async Task<List<EvidenceValue>> GetEvidenceValuesKjoretoyopplysninger(EvidenceHarvesterRequest evidenceHarvesterRequest)
+    {
+        var subject = evidenceHarvesterRequest.SubjectParty;
+        try
+        {
+            var svvResponse = await _svvClient.SokKjoretoyForOrgnummer(subject?.NorwegianOrganizationNumber);
+
+            var ecb = new EvidenceBuilder(new Metadata(), "Kjoretoyopplysninger");
+            ecb.AddEvidenceValue("default", JsonConvert.SerializeObject(svvResponse), Metadata.SOURCE, false);
+
+            return ecb.GetEvidenceValues();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"Func 'Kjoretoy' failed for input '{subject?.NorwegianOrganizationNumber}': {e.Message}");
+
+            throw;
+        }
+    }
+
     [Function("Verkstedregisteret")]
     public async Task<HttpResponseData> Verkstedregisteret(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestData req,
