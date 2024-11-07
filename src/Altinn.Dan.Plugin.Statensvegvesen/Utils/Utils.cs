@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Altinn.Dan.Plugin.Brreg.Models;
+using System.Threading.Tasks;
 using Altinn.Dan.Plugin.Statensvegvesen.Clients;
 using Altinn.Dan.Plugin.Statensvegvesen.Models;
 
@@ -62,4 +65,38 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Utils
             return $"{firstName} {lastName}";
         }
     }
+
+    public static class DueDiligenceUtils
+    {
+        public static List<DueDiligenceVehicle> MapToExternal(OrganisasjonsnummerResponse sok, string orgno)
+        {
+            var result = new List<DueDiligenceVehicle>();
+
+            foreach (var car in sok.KjoretoydataListe)
+            {
+                var vehicle = new DueDiligenceVehicle
+                {
+                    Leased = car.Kjoretoydata.Eierskap.Leasingtaker?.Enhet?.Organisasjonsnummer == orgno,
+                    Brand = string.Join(",", car.Kjoretoydata.Godkjenning.TekniskGodkjenning.TekniskeData.Generelt.Merke.Select(x => x.Merke1)),
+                    Number = car.Kjoretoydata.KjoretoyId.Kjennemerke,
+                    Ownership = car.Kjoretoydata.Eierskap.Eier?.Enhet?.Organisasjonsnummer == orgno,
+                    VehicleGroup = string.Join(",", car.Kjoretoydata.Kjennemerke.Select(x => x.Kjennemerketype.KodeNavn)),         //car.Kjoretoydata.Godkjenning.TekniskGodkjenning.Kjoretoyklassifisering.TekniskKode.KodeNavn,
+                    LastPassedEUControl = car.Kjoretoydata.PeriodiskKjoretoyKontroll.SistGodkjent == null ? "" : car.Kjoretoydata.PeriodiskKjoretoyKontroll.SistGodkjent.ToString(),
+                    FirstRegisteredDateTime = car.Kjoretoydata.Forstegangsregistrering.RegistrertForstegangNorgeDato.ToString(),
+                    VIN = car.Kjoretoydata.KjoretoyId.Understellsnummer,
+                    MileageRegisteredDateTime = "",
+                    CO2 = car.Kjoretoydata.Godkjenning.TekniskGodkjenning.TekniskeData.Miljodata?.MiljoOgdrivstoffGruppe[0]?.ForbrukOgUtslipp[0]?.Co2BlandetKjoring,
+                    EnvironmentClassification = string.Join(", ", car.Kjoretoydata.Godkjenning.TekniskGodkjenning?.TekniskeData?.Miljodata?.MiljoOgdrivstoffGruppe?.Select(x => x.DrivstoffKodeMiljodata.KodeNavn)),
+                    FuelType = car.Kjoretoydata.Godkjenning.TekniskGodkjenning.TekniskeData.Miljodata?.EuroKlasse?.KodeVerdi?.ToString(),
+                    GearBoxType = car.Kjoretoydata.Godkjenning.TekniskGodkjenning.TekniskeData.MotorOgDrivverk.Girkassetype?.KodeNavn,
+                    Mileage = -1,
+                    NOx = car.Kjoretoydata.Godkjenning.TekniskGodkjenning.TekniskeData.Miljodata.MiljoOgdrivstoffGruppe[0].ForbrukOgUtslipp[0].UtslippNOxMgPrKm,
+                };
+
+                result.Add(vehicle);
+            }
+            return result;
+        }
+    }
 }
+

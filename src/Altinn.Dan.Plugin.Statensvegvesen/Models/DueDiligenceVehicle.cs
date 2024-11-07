@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Altinn.Dan.Plugin.Brreg.Models;
 
 namespace Altinn.Dan.Plugin.Statensvegvesen.Models
 {
@@ -54,5 +55,8 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Models
 
         [JsonProperty("kilometerstandSistAvlest")]
         public string MileageRegisteredDateTime { get; set; }
+
+        [JsonProperty("heftelser")]
+        public LosoreV2 Charges { get; set; }
     }
 }

@@ -43,7 +43,7 @@ internal class Program
                 services.AddApplicationInsightsTelemetryWorkerService();
 
                 services.AddScoped<SvvClient>();
-
+                services.AddScoped<IDanPluginClientService, DanPluginClientService>();
                 services.AddOptions<ApplicationSettings>()
                     .Configure<IConfiguration>((settings, configuration) => configuration.Bind(settings));
                 ApplicationSettings = services.BuildServiceProvider().GetRequiredService<IOptions<ApplicationSettings>>().Value;
@@ -54,7 +54,8 @@ internal class Program
                 var registry = new PolicyRegistry
                 {
                     { "defaultCircuitBreaker", HttpPolicyExtensions.HandleTransientHttpError().CircuitBreakerAsync(4, ApplicationSettings.BreakerRetryWaitTime) },
-                    { "CachePolicy", Policy.CacheAsync(distributedCache.AsAsyncCacheProvider<string>(), TimeSpan.FromHours(12)) }
+                    { "CachePolicy", Policy.CacheAsync(distributedCache.AsAsyncCacheProvider<string>(), TimeSpan.FromHours(12)) },
+                    { "SafeHttpClientPolicy", HttpPolicyExtensions.HandleTransientHttpError().CircuitBreakerAsync(4, ApplicationSettings.BreakerRetryWaitTime) }
                 };
                 services.AddPolicyRegistry(registry);
 
@@ -64,6 +65,12 @@ internal class Program
                     client.BaseAddress = new Uri(ApplicationSettings.SvvUrl);
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                         Convert.ToBase64String(Encoding.ASCII.GetBytes($"{ApplicationSettings.SvvUsername}:{ApplicationSettings.SvvPassword}")));
+                }).AddPolicyHandlerFromRegistry("defaultCircuitBreaker");
+
+                services.AddHttpClient("SafeHttpClient", (provider, client) =>
+                {
+                    client.Timeout = new TimeSpan(0, 0, 30);
+
                 }).AddPolicyHandlerFromRegistry("defaultCircuitBreaker");
 
                 JsonConvert.DefaultSettings = () => new JsonSerializerSettings

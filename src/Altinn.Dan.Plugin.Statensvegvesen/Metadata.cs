@@ -67,6 +67,16 @@ public class Metadata : IEvidenceSourceMetadata
                         Source = SOURCE
                     }
                 },
+                Parameters = new List<EvidenceParameter>()
+                {
+                    new()
+                    {
+                        EvidenceParamName = "InkluderHeftelser",
+                        ParamType = EvidenceParamType.Boolean,
+                        Required = false
+                        
+                    }
+                },
                 AuthorizationRequirements = new List<Requirement>
                 {
                     new MaskinportenScopeRequirement

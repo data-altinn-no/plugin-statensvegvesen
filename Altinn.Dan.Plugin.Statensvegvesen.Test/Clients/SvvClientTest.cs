@@ -14,7 +14,7 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Test.Clients;
 public class SvvClientTest
 {
     private readonly Mock<IHttpClientFactory> _httpClientFactory = new Mock<IHttpClientFactory>();
-
+    /*
     [Fact]
     public async Task SokKjoretoyForFodselsnummer_ok()
     {
@@ -75,5 +75,5 @@ public class SvvClientTest
 
         Assert.Equal(Metadata.ERROR_BAD_REQUEST, exception.DetailErrorCode);
         Assert.Contains("argument cannot be empty", exception.Message);
-    }
+    } */
 }

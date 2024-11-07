@@ -16,5 +16,9 @@ public class ApplicationSettings
 
     public string KjoretoyUrl { get; set; }
 
+    public string Env { get; set; }
+
+    public string PluginCode { get; set; }
+
 
 }

@@ -13,7 +13,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
+
 
 namespace Altinn.Dan.Plugin.Statensvegvesen;
 
@@ -21,10 +23,12 @@ public class Main
 {
     private ILogger _logger;
     private readonly SvvClient _svvClient;
+    private HttpClient _client;
 
-    public Main(SvvClient svvClient, ILoggerFactory loggerFactory)
+    public Main(SvvClient svvClient, ILoggerFactory loggerFactory, IHttpClientFactory clientFactory)
     {
         _svvClient = svvClient;
+        _client = clientFactory.CreateClient("SafeHttpClient");
         _logger = loggerFactory.CreateLogger<Main>();
     }
 
@@ -77,7 +81,7 @@ public class Main
         var subject = evidenceHarvesterRequest.SubjectParty;
         try
         {
-            var svvResponse = await _svvClient.SokKjoretoyForOrgnummer(subject?.NorwegianOrganizationNumber);
+            var svvResponse = await _svvClient.SokKjoretoyForOrgnummer(subject?.NorwegianOrganizationNumber, 0, 100, true);
 
             var ecb = new EvidenceBuilder(new Metadata(), "Kjoretoyopplysninger");
             ecb.AddEvidenceValue("default", JsonConvert.SerializeObject(svvResponse), Metadata.SOURCE, false);
@@ -91,6 +95,7 @@ public class Main
             throw;
         }
     }
+
 
     [Function("Verkstedregisteret")]
     public async Task<HttpResponseData> Verkstedregisteret(
