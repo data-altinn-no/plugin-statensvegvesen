@@ -81,7 +81,7 @@ public class Metadata : IEvidenceSourceMetadata
                 {
                     new MaskinportenScopeRequirement
                     {
-                        RequiredScopes = new List<string> { "altinn:dataaltinnno/eduediligence" }
+                        RequiredScopes = new List<string> { "altinn:dataaltinnno/duediligence" }
                     }
                 }
             },
