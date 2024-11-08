@@ -15,6 +15,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Dan.Common.Extensions;
 
 
 namespace Altinn.Dan.Plugin.Statensvegvesen;
@@ -81,7 +82,9 @@ public class Main
         var subject = evidenceHarvesterRequest.SubjectParty;
         try
         {
-            var svvResponse = await _svvClient.SokKjoretoyForOrgnummer(subject?.NorwegianOrganizationNumber, 0, 100, true);
+            bool includeCharges = evidenceHarvesterRequest.TryGetParameter("InkluderHeftelser", out bool includeHeftelser);
+
+            var svvResponse = await _svvClient.SokKjoretoyForOrgnummer(subject?.NorwegianOrganizationNumber, 0, 100, includeCharges);
 
             var ecb = new EvidenceBuilder(new Metadata(), "Kjoretoyopplysninger");
             ecb.AddEvidenceValue("default", JsonConvert.SerializeObject(svvResponse), Metadata.SOURCE, false);
