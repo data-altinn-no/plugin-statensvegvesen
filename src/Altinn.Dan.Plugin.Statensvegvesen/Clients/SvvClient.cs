@@ -113,19 +113,28 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
 
                         var vehicleList = DueDiligenceUtils.MapToExternal(kjoretoysokResponse, orgnummer);
 
-                        var taskList = new List<Task<LosoreV2>>();
-                        foreach (var regnr in vehicleList)
-                        {
-                           taskList.Add(GetHeftelser(regnr.Number, orgnummer));
-                        }
+                        if (includeCharges)
+                            {
+                                var taskList = new List<Task<LosoreV2>>();
+                                foreach (var regnr in vehicleList)
+                                {
+                                    //Temp testdata fix
+                                    if (_settings.Env != "prod")
+                                    {
+                                        regnr.Number = "AB52874";
+                                    }
+                                    taskList.Add(GetHeftelser(regnr.Number, orgnummer));
+                                }
 
-                        await Task.WhenAll(taskList);
+                                await Task.WhenAll(taskList);
 
-                        foreach (var vehicle in vehicleList)
-                        {
-                            var resultCharges = taskList.Where(x => x.Result.sokeparameter == vehicle.Number).First().Result;
-                                vehicle.Charges = resultCharges;
+                                foreach (var vehicle in vehicleList)
+                                {
+                                    var resultCharges = taskList.Where(x => x.Result.sokeparameter == vehicle.Number).First().Result;
+                                    vehicle.Charges = resultCharges;
+                                }
                             }
+    
 
                         return vehicleList;
                     }
