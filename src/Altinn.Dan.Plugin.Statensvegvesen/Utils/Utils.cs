@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Altinn.Dan.Plugin.Brreg.Models;
 using System.Threading.Tasks;
 using Altinn.Dan.Plugin.Statensvegvesen.Clients;
@@ -8,7 +9,7 @@ using Altinn.Dan.Plugin.Statensvegvesen.Models;
 
 namespace Altinn.Dan.Plugin.Statensvegvesen.Utils
 {
-    public static class OedUtils
+    public static partial class OedUtils
     {
         public static SvvResponse MapToInternal(KjoretoysokResponse externalResponse)
         {
@@ -16,10 +17,14 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Utils
             if (externalResponse != null)
                 foreach (var kjoretoyResponse in externalResponse.Kjoretoyresponser)
                 {
+                    var regNr = GetNewestRegNr(kjoretoyResponse);
                     var technicalApproval = kjoretoyResponse.Kjoretoy?.Godkjenning?.TekniskGodkjenning;
                     internalResponse.Vehicles.Add(new Vehicle
                     {
-                        RegNr = kjoretoyResponse.Kjoretoy?.KjoretoyId?.Kjennemerke,
+                        // This is how it was supposed to be fetched, but we dont get it in svv-response
+                        // Waiting for svv-response to determine which method is correct to find regNr
+                        // RegNr = kjoretoyResponse.Kjoretoy?.KjoretoyId?.Kjennemerke,
+                        RegNr = regNr,
                         Brand = technicalApproval?.TekniskeData?.Generelt?.Merke?.First().Merke1,
                         GroupName = technicalApproval?.Kjoretoyklassifisering?.TekniskKode?.KodeNavn,
                         GroupValue = technicalApproval?.Kjoretoyklassifisering?.TekniskKode?.KodeVerdi,
@@ -64,6 +69,24 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Utils
 
             return $"{firstName} {lastName}";
         }
+
+        private static string GetNewestRegNr(KjoretoyResponse kjoretoyResponse)
+        {
+            var newestKjennemerke = kjoretoyResponse?.Kjoretoy?.Kjennemerke?
+                .OrderByDescending(k => k.FomTidspunkt)
+                .FirstOrDefault();
+            if (newestKjennemerke is null)
+            {
+                return null;
+            }
+
+            var kjenneMerke = newestKjennemerke.Kjennemerke1;
+            var regNr = WhitespaceRegex().Replace(kjenneMerke, string.Empty);
+            return regNr;
+        }
+
+        [GeneratedRegex(@"\s+")]
+        private static partial Regex WhitespaceRegex();
     }
 
     public static class DueDiligenceUtils
