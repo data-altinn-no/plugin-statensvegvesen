@@ -20,10 +20,10 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Utils
                     internalResponse.Vehicles.Add(new Vehicle
                     {
                         RegNr = kjoretoyResponse.Kjoretoy?.KjoretoyId?.Kjennemerke,
-                        Brand = technicalApproval?.TekniskeData?.Generelt?.Merke?.First().Merke1,
+                        Brand = technicalApproval?.TekniskeData?.Generelt?.Merke?.FirstOrDefault()?.Merke1,
                         GroupName = technicalApproval?.Kjoretoyklassifisering?.TekniskKode?.KodeNavn,
                         GroupValue = technicalApproval?.Kjoretoyklassifisering?.TekniskKode?.KodeVerdi,
-                        Model = technicalApproval?.TekniskeData?.Generelt?.Handelsbetegnelse?.First(),
+                        Model = technicalApproval?.TekniskeData?.Generelt?.Handelsbetegnelse?.FirstOrDefault(),
                         Owner = GetNameOfOwner(kjoretoyResponse),
                         CoOwner = GetNameOfCoOwner(kjoretoyResponse),
                         DeadlineEUApproval = kjoretoyResponse.Kjoretoy?.PeriodiskKjoretoyKontroll?.Kontrollfrist?.DateTime,
