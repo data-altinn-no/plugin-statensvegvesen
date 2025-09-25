@@ -46,7 +46,9 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
             {
                 var urlBuilder = new StringBuilder();
                 urlBuilder.Append("?fodselsnummer=").Append(Uri.EscapeDataString(fodselsnummer));
+                urlBuilder.Append("&ekskluderVraketUtfort=true");
                 response = await _httpClient.GetAsync(urlBuilder.ToString());
+
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.OK:
@@ -62,6 +64,10 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
                     case HttpStatusCode.BadRequest:
                     {
                         throw new EvidenceSourcePermanentClientException(Metadata.ERROR_BAD_REQUEST, $"Bad request");
+                    }
+                    case HttpStatusCode.Forbidden:
+                    {
+                        throw new EvidenceSourcePermanentServerException(Metadata.ERROR_FORBIDDEN, $"Forbidden");
                     }
                     default:
                     {

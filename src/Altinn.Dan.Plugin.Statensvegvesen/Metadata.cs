@@ -2,6 +2,7 @@ using Altinn.Dan.Plugin.Statensvegvesen.Models;
 using Dan.Common.Enums;
 using Dan.Common.Interfaces;
 using Dan.Common.Models;
+using Dan.Common;
 using Newtonsoft.Json;
 using NJsonSchema;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ public class Metadata : IEvidenceSourceMetadata
 
     public const int ERROR_QUOTA_EXCEEDED = 4;
 
+    public static int ERROR_FORBIDDEN = 5;
+
     public List<EvidenceCode> GetEvidenceCodes()
     {
         return new List<EvidenceCode>
@@ -39,7 +42,7 @@ public class Metadata : IEvidenceSourceMetadata
                     {
                         EvidenceValueName = "default",
                         ValueType = EvidenceValueType.JsonSchema,
-                        JsonSchemaDefintion = JsonSchema.FromType<SvvResponse>().ToJson(Formatting.Indented),
+                        JsonSchemaDefintion = EvidenceValue.SchemaFromObject<SvvResponse>(Formatting.Indented),
                         Source = SOURCE
                     }
                 },
@@ -63,7 +66,7 @@ public class Metadata : IEvidenceSourceMetadata
                     {
                         EvidenceValueName = "default",
                         ValueType = EvidenceValueType.JsonSchema,
-                        JsonSchemaDefintion = JsonSchema.FromType<SvvResponse>().ToJson(Formatting.Indented),
+                        JsonSchemaDefintion = EvidenceValue.SchemaFromObject<SvvResponse>(Formatting.Indented),
                         Source = SOURCE
                     }
                 },
