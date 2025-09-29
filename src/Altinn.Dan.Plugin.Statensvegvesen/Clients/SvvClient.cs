@@ -34,7 +34,7 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
             _danClientService = danService;
         }
 
-        public async Task<KjoretoysokResponse> SokKjoretoyForFodselsnummer(string fodselsnummer)
+        public async Task<KjoretoysokResponse> SokKjoretoyForFodselsnummer(string fodselsnummer, int? from = 0, int? count = 50)
         {
             if (string.IsNullOrEmpty(fodselsnummer))
             {
@@ -47,6 +47,13 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
                 var urlBuilder = new StringBuilder();
                 urlBuilder.Append("?fodselsnummer=").Append(Uri.EscapeDataString(fodselsnummer));
                 urlBuilder.Append("&ekskluderVraketUtfort=true");
+
+                if (from != null && from > 0)
+                    urlBuilder.Append("&fra=" + from);
+
+                if (count != null && count > 0)
+                    urlBuilder.Append("&antall=" + count);
+
                 response = await _httpClient.GetAsync(urlBuilder.ToString());
 
                 switch (response.StatusCode)

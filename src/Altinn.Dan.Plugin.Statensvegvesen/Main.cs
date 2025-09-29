@@ -48,9 +48,25 @@ public class Main
     private async Task<List<EvidenceValue>> GetEvidenceValuesKjoretoy(EvidenceHarvesterRequest evidenceHarvesterRequest)
     {
         var subject = evidenceHarvesterRequest.SubjectParty;
+       
         try
         {
-            var svvResponse = OedUtils.MapToInternal(await _svvClient.SokKjoretoyForFodselsnummer(subject?.NorwegianSocialSecurityNumber));
+            var response = new KjoretoysokResponse() { Kjoretoyresponser = new List<KjoretoyResponse>() };
+            var vehicles = await _svvClient.SokKjoretoyForFodselsnummer(subject?.NorwegianSocialSecurityNumber);            
+
+            while (vehicles.AntallTreffTotalt> response.Kjoretoyresponser.Count)
+            {
+                foreach (var res in vehicles.Kjoretoyresponser)
+                    response.Kjoretoyresponser.Add(res);
+
+                if (vehicles.AntallTreffTotalt > response.Kjoretoyresponser.Count)
+                    vehicles = await _svvClient.SokKjoretoyForFodselsnummer(subject?.NorwegianSocialSecurityNumber, response.Kjoretoyresponser.Count+1, 50);
+
+                if (vehicles == null)
+                    break;
+            }           
+
+            var svvResponse = OedUtils.MapToInternal(response);
 
             var ecb = new EvidenceBuilder(new Metadata(), "Kjoretoy");
             ecb.AddEvidenceValue("default", JsonConvert.SerializeObject(svvResponse), Metadata.SOURCE, false);
@@ -64,6 +80,7 @@ public class Main
             throw;
         }
     }
+
 
     [Function("Kjoretoyopplysninger")]
     public async Task<HttpResponseData> Kjoretoyopplysninger(
