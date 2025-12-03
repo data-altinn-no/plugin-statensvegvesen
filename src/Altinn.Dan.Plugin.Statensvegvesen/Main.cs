@@ -48,13 +48,13 @@ public class Main
     private async Task<List<EvidenceValue>> GetEvidenceValuesKjoretoy(EvidenceHarvesterRequest evidenceHarvesterRequest)
     {
         var subject = evidenceHarvesterRequest.SubjectParty;
-       
+
         try
         {
             var response = new KjoretoysokResponse() { Kjoretoyresponser = new List<KjoretoyResponse>() };
-            var vehicles = await _svvClient.SokKjoretoyForFodselsnummer(subject?.NorwegianSocialSecurityNumber);            
+            var vehicles = await _svvClient.SokKjoretoyForFodselsnummer(subject?.NorwegianSocialSecurityNumber);
 
-            while (vehicles.AntallTreffTotalt> response.Kjoretoyresponser.Count)
+            while (vehicles is not null && vehicles.AntallTreffTotalt> response.Kjoretoyresponser.Count)
             {
                 foreach (var res in vehicles.Kjoretoyresponser)
                     response.Kjoretoyresponser.Add(res);
@@ -64,7 +64,7 @@ public class Main
 
                 if (vehicles == null)
                     break;
-            }           
+            }
 
             var svvResponse = OedUtils.MapToInternal(response);
 
@@ -143,7 +143,7 @@ public class Main
             ecb.AddEvidenceValue("godkjenningstyper", approvals, Metadata.SOURCE);
             ecb.AddEvidenceValue("godkjenningsnumre", allApprovalNumbers, Metadata.SOURCE);
             return ecb.GetEvidenceValues();
-        } 
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex.Message);
