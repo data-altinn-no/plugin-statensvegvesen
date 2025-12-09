@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Altinn.Dan.Plugin.Brreg.Models;
-using System.Threading.Tasks;
 using Altinn.Dan.Plugin.Statensvegvesen.Clients;
 using Altinn.Dan.Plugin.Statensvegvesen.Models;
 

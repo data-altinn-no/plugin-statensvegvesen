@@ -1,13 +1,11 @@
-using Altinn.ApiClients.Maskinporten.Config;
+using System;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using Altinn.ApiClients.Maskinporten.Interfaces;
 using Altinn.ApiClients.Maskinporten.Models;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
-using Dan.Plugin.Statensvegvesen.Config;
 
 namespace Dan.Plugin.Statensvegvesen.Config
 {

@@ -8,10 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
 {
@@ -72,7 +70,7 @@ namespace Altinn.Dan.Plugin.Statensvegvesen.Clients
                         "prod" => metadata_prod,
                         _ => throw new ArgumentOutOfRangeException(nameof(env), $"env must be dev, test or prod"),
                     };
-                
+
                 var metadataResponse = await _httpClient.GetAsync(url);
                 if (metadataResponse.IsSuccessStatusCode)
                 {

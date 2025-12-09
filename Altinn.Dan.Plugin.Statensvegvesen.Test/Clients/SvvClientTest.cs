@@ -1,13 +1,5 @@
-using Altinn.Dan.Plugin.Statensvegvesen.Clients;
-using Altinn.Dan.Plugin.Statensvegvesen.Test.TestUtils;
-using Dan.Common.Exceptions;
-using Moq;
-using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
-using Altinn.Dan.Plugin.Statensvegvesen.Config;
-using Microsoft.Extensions.Options;
-using Xunit;
+using Moq;
 
 namespace Altinn.Dan.Plugin.Statensvegvesen.Test.Clients;
 

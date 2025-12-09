@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using Altinn.Dan.Plugin.Statensvegvesen.Clients;
 using Altinn.Dan.Plugin.Statensvegvesen.Test.TestUtils;
 using Altinn.Dan.Plugin.Statensvegvesen.Utils;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace Altinn.Dan.Plugin.Statensvegvesen.Test.Utils;
