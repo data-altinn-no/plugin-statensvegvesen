@@ -2,9 +2,7 @@ using Altinn.Dan.Plugin.Statensvegvesen.Models;
 using Dan.Common.Enums;
 using Dan.Common.Interfaces;
 using Dan.Common.Models;
-using Dan.Common;
 using Newtonsoft.Json;
-using NJsonSchema;
 using System.Collections.Generic;
 
 namespace Altinn.Dan.Plugin.Statensvegvesen;
@@ -77,7 +75,7 @@ public class Metadata : IEvidenceSourceMetadata
                         EvidenceParamName = "InkluderHeftelser",
                         ParamType = EvidenceParamType.Boolean,
                         Required = false
-                        
+
                     }
                 },
                 AuthorizationRequirements = new List<Requirement>
