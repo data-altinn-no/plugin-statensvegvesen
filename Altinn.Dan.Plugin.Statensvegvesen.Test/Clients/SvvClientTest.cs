@@ -1,11 +1,11 @@
 using System.Net.Http;
-using Moq;
+using FakeItEasy;
 
 namespace Altinn.Dan.Plugin.Statensvegvesen.Test.Clients;
 
 public class SvvClientTest
 {
-    private readonly Mock<IHttpClientFactory> _httpClientFactory = new Mock<IHttpClientFactory>();
+    private readonly IHttpClientFactory _httpClientFactory = A.Fake<IHttpClientFactory>();
     /*
     [Fact]
     public async Task SokKjoretoyForFodselsnummer_ok()
